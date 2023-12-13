@@ -20,9 +20,6 @@ public class UtilidadesArrays
     	}
     	return resultado;
     }
-    private void vacio() {
-    	//esto no hace nada
-    }
     /**
      * Este metodo altera un array incrementando en una cantidad determinada el valor de cada una de las posiciones 
      * @param array. Array que es modificado para incrementarlo
