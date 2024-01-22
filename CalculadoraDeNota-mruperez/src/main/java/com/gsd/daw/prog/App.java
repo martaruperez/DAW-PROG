@@ -4,6 +4,11 @@ public class App
 {
     public static void main( String[] args )
     {
-		Nota.Calcular(args);
+		try {
+			Nota nota = new Nota(args);
+		} 
+		catch(IllegalArgumentException e) {
+			System.err.println("ERROR: Argumentos no validos");
+		}
     }
 }
