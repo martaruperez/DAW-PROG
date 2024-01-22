@@ -16,7 +16,8 @@ public class Nota {
 	}
 	
 	private void almacenarNotas(String arg) {
-		String[] notaPartida = new String [2];
+		// TODO: quitar esto de aqui y hacer un metodo de split
+		String[][] notaPartida = new String[] [2];
 		notaPartida = arg.split("-");
 		
 		switch (notaPartida[0]) {
@@ -48,6 +49,8 @@ public class Nota {
 		for(int i = 0; i < this.notaActitud.length; i++) {
 			notaActitud[i] = this.notaActitud[i];
 		}
+		notaActitud[this.notaActitud.length]=Integer.parseInt(stringNota);
+		this.notaActitud = notaActitud;
 	}
 	
 	private boolean validar(String[] args) {
@@ -68,8 +71,21 @@ public class Nota {
 		
 		
 		//que esté la nota de Actitud
+		if(this.notaActitud[0] == -1) {
+			return false;
+		}
+		
+		//que haya solo una nota de Actitud
+		if(this.notaActitud.length != 1) {
+			return false;
+		}
 		
 		//que esté la nota de Asistencia
+		
+		//que haya solo una nota de Asistencia
+		if(this.notaAsistencia.length != 1) {
+			return false;
+		}
 		
 		//que las notas sean números
 		
