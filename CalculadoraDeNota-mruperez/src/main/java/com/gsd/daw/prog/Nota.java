@@ -46,7 +46,7 @@ public class Nota {
 		
 		int[] notaActitud = new int [this.notaActitud.length+1];
 		for(int i = 0; i < this.notaActitud.length; i++) {
-			
+			notaActitud[i] = this.notaActitud[i];
 		}
 	}
 	
