@@ -65,21 +65,22 @@ public class Evaluacion {
 					System.out.println("0.00");
 					return; 
 				}
-				notasTeoria = notas[i].getNota();
+				notasTeoria += notas[i].getNota();
 			}
 			if(notas[i].getTipoDeNota()=='P') {
 				if(notas[i].getNota() < 4) {
 					System.out.println("0.00");
 					return; 
 				}
-				notasTeoria = notas[i].getNota();
+				notasTeoria += notas[i].getNota();
 			} 
-			if(notas[i].getTipoDeNota()=='A' || notas[i].getTipoDeNota()=='A') {
+			if(notas[i].getTipoDeNota()=='A' || notas[i].getTipoDeNota()=='T') {
 				notasParticipacion += notas[i].getNota();
 			}
 		}
 		
-		mediaTeoria = (notasTeoria / this.cExamenes + this.cPracticas );
+
+		mediaTeoria = (notasTeoria / (this.cExamenes + this.cPracticas) );
 		
 		if(mediaTeoria < 4) {
 			notaFinal = mediaTeoria;
@@ -87,7 +88,10 @@ public class Evaluacion {
 		else {
 			notaFinal = (mediaTeoria * 0.8)+ notasParticipacion; 
 		}
-		
+		if(notaFinal == 10.00) {
+			System.out.println("MH");
+			return;
+		}
 		 DecimalFormat print = new DecimalFormat("#.00");
 		 System.out.println(print.format(notaFinal));
 	}
