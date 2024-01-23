@@ -5,43 +5,84 @@ public class Nota {
 	private double nota;
 	
 	public Nota(String arg) throws IllegalArgumentException {
+		String [] entradaDividida = dividirEntrada(arg);
 		
+		//que todas las notas vengan en el formato pedido [CPTA]-<numero-decimal>
+		if(!esLetraValida(entradaDividida[0])) {
+			throw new IllegalArgumentException("ERROR: Entrada no valida. "+"\n"+"Formato pedido: [CPTA]-<numero-decimal>");
+		}
+		if(!esDouble(entradaDividida[1])) {
+			throw new IllegalArgumentException("ERROR: Entrada no valida. "+"\n"+"Formato pedido: [CPTA]-<numero-decimal>");
+		}
+		if(!validar()) {
+			System.err.println("ERROR: Entrada no valida. "+"\n"+"Formato pedido: [CPTA]-<numero-decimal>");
+			throw new IllegalArgumentException();
+		}
+		
+		this.tipoDeNota = entradaDividida[0].charAt(0);
+		this.nota = Double.parseDouble(entradaDividida[1]);
 	}
 	
 	private String[] dividirEntrada(String arg){
 		return arg.split("-");
 	}
 	
-	private boolean validar(Nota[] notas) {
-		//que no haya menos de 4 notas (una por cada tipo)
-		
-		//que no haya mas de 20 notas
-		
-		//que haya al menos un examen
-		
-		
-		//que haya al menos una practica
-		
-		
-		//que esté la nota de Actitud
-		
-		//que haya solo una nota de Actitud
-		
-		//que esté la nota de Asistencia
-		
-		
-		//que haya solo una nota de Asistencia
-		
+	private boolean esLetraValida(String cadena) {
+		if(cadena.length() != 1) {
+			return false;
+		}
+		if(cadena.charAt(0) == 'C') {
+			return true;
+		}
+		if(cadena.charAt(0) == 'P') {
+			return true;
+		}
+		if(cadena.charAt(0) == 'A') {
+			return true;
+		}
+		if(cadena.charAt(0) == 'T') {
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean esDouble(String cadena) {
 		//que las notas sean números
-		
-		
+	    try {
+	        Double.parseDouble(cadena);
+	        
+	        return true;
+	        
+	    } catch (NumberFormatException e) {
+	        
+	        return false;
+	    }
+	}
+	
+	private boolean validar() {
 		//que las notas estén entre 0 y 10 o entre 0 y 1 según corresponda
-		
-		
-		//que todas las notas vengan en el formato pedido [CPTA]-<numero-decimal>
-
+		if(this.nota<0) {
+			return false;
+		}
+		if(this.nota>10) {
+			return false;
+		}
+		if(this.tipoDeNota == 'A' && this.nota > 1) {
+			return false;
+		}
+		if(this.tipoDeNota == 'T' && this.nota > 1) {
+			return false;
+		}
 		
 		return true;
 	}
-			
+
+	public char getTipoDeNota() {
+		return this.tipoDeNota;
+	}
+
+	public double getNota() {
+		return this.nota;
+	}
+	
 }
