@@ -14,13 +14,15 @@ public class Nota {
 		if(!esDouble(entradaDividida[1])) {
 			throw new IllegalArgumentException("ERROR: Entrada no valida. "+"\n"+"Formato pedido: [CPTA]-<numero-decimal>");
 		}
+		
+		this.tipoDeNota = entradaDividida[0].charAt(0);
+		this.nota = Double.parseDouble(entradaDividida[1]);
+		
 		if(!validar()) {
 			System.err.println("ERROR: Entrada no valida. "+"\n"+"Formato pedido: [CPTA]-<numero-decimal>");
 			throw new IllegalArgumentException();
 		}
 		
-		this.tipoDeNota = entradaDividida[0].charAt(0);
-		this.nota = Double.parseDouble(entradaDividida[1]);
 	}
 	
 	private String[] dividirEntrada(String arg){

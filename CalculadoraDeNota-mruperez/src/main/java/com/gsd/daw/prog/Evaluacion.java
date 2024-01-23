@@ -5,6 +5,7 @@ public class Evaluacion {
 	private Nota[] notas;
 	private int cExamenes = 0;
 	private int cPracticas = 0;
+	private double notaFinal;
 	
 	public Evaluacion(Nota[] notas) throws IllegalArgumentException{
 		if(!validar(notas)) {
@@ -62,14 +63,16 @@ public class Evaluacion {
 		for(int i = 0; i < notas.length; i++) {
 			if(notas[i].getTipoDeNota()=='C') {
 				if(notas[i].getNota() < 3) {
-					System.out.println("0.00");
-					return; 
+					this.notaFinal = 0.00; 
+					System.out.println(this.notaFinal);
+					return;
 				}
 				notasTeoria += notas[i].getNota();
 			}
 			if(notas[i].getTipoDeNota()=='P') {
 				if(notas[i].getNota() < 4) {
-					System.out.println("0.00");
+					this.notaFinal = 0.00; 
+					System.out.println(this.notaFinal);
 					return; 
 				}
 				notasTeoria += notas[i].getNota();
@@ -83,17 +86,20 @@ public class Evaluacion {
 		mediaTeoria = (notasTeoria / (this.cExamenes + this.cPracticas) );
 		
 		if(mediaTeoria < 4) {
-			notaFinal = mediaTeoria;
+			this.notaFinal = mediaTeoria;
 		}
 		else {
-			notaFinal = (mediaTeoria * 0.8)+ notasParticipacion; 
+			this.notaFinal = (mediaTeoria * 0.8)+ notasParticipacion; 
 		}
-		if(notaFinal == 10.00) {
+		if(this.notaFinal == 10.00) {
 			System.out.println("MH");
 			return;
 		}
 		 DecimalFormat print = new DecimalFormat("#.00");
-		 System.out.println(print.format(notaFinal));
+		 System.out.println(print.format(this.notaFinal));
 	}
 	
+	public double getNotaFinal() {
+		return this.notaFinal;
+	}
 }

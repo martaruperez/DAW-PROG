@@ -2,7 +2,7 @@ package com.gsd.daw.prog;
 
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws IllegalArgumentException
     {
     	if(args.length < 4) {
     		System.err.println("ERROR: Debe introuducir al menos 4 notas.");
