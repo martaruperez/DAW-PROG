@@ -1,8 +1,6 @@
 package com.gsd.daw.prog;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -19,11 +17,11 @@ public class AppTest
     @Test 
     public void excepcionPorLetraMuyLarga() throws IllegalArgumentException {
     	try {
-    		Nota t = new Nota("Xs-4");
+    		Nota t = new Nota("Cs-4");
     		assertTrue(false);
     	}
     	catch(IllegalArgumentException e) {
-    		assertTrue(true);
+    		
     	}
     }
     
@@ -34,7 +32,7 @@ public class AppTest
     		assertTrue(false);
     	}
     	catch(IllegalArgumentException e) {
-    		assertTrue(true);
+
     	}
     }
     
@@ -45,7 +43,7 @@ public class AppTest
     		assertTrue(false);
     	}
     	catch(IllegalArgumentException e) {
-    		assertTrue(true);
+
     	}
     	
     }
@@ -57,7 +55,7 @@ public class AppTest
     		assertTrue(false);
     	}
     	catch(IllegalArgumentException e) {
-    		assertTrue(true);
+
     	}
     }
     
@@ -68,7 +66,7 @@ public class AppTest
     		assertTrue(false);
     	}
     	catch(IllegalArgumentException e) {
-    		assertTrue(true);
+
     	}
     }
     
@@ -79,7 +77,7 @@ public class AppTest
     		assertTrue(false);
     	}
     	catch(IllegalArgumentException e) {
-    		assertTrue(true);
+
     	}
     }
     
@@ -114,7 +112,7 @@ public class AppTest
     		assertTrue(false);
     	}
     	catch(IllegalArgumentException e) {
-    		assertTrue(true);
+
     	}
     }
     
@@ -131,7 +129,7 @@ public class AppTest
     		assertTrue(false);
     	}
     	catch(IllegalArgumentException e) {
-    		assertTrue(true);
+
     	}
     }
     
@@ -150,12 +148,12 @@ public class AppTest
     		assertTrue(false);
     	}
     	catch(IllegalArgumentException e) {
-    		assertTrue(true);
+
     	}
     }
     
     @Test 
-    public void calculaNotaNormalBien() {
+    public void calculaNotaConArgumentosCorrectosBien() {
     	Nota asistencia = new Nota("A-1");
     	Nota practica = new Nota("P-5");
     	Nota actitud = new Nota("T-1");
@@ -211,7 +209,7 @@ public class AppTest
     		assertTrue(false);
     	}
     	catch(IllegalArgumentException e) {
-    		assertTrue(true);
+
     	}
     }
     @Test
@@ -242,7 +240,7 @@ public class AppTest
     @Test
     public void comprobarCuandoHayDemasiadosArgumentos() {
     	String[] args = {"C-5", "P-8", "A-1", "T-1", "C-6", "P-8", "P-8", "C-9", "C-5", "C-5",
-    	"C-5", "C-5", "C-7", "P-4", "P-8", "P-8", "P-6.6", "P-5.08", "P-8", "P-8"};
+    	"C-5", "C-5", "C-7", "P-4", "P-8", "P-8", "P-6.6", "P-5.08", "P-8", "P-8", "C-5"};
     	App.main(args);
     	assertTrue(true);
     }
