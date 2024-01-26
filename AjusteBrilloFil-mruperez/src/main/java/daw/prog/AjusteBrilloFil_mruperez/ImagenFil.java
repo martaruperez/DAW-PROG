@@ -40,8 +40,7 @@ public class ImagenFil {
 		this.altura = this.infoFichero[2];
 		this.cantidadDePixeles = (Integer.parseInt(altura)*Integer.parseInt(ancho));
 		if(!formatoCorrecto()) {
-			throw new Exception("ERROR: Ha introuducido un formato incorrecto"
-					+ "\n USO: <fichero> <ajuste del brillo>");
+			throw new Exception("ERROR: Ha introuducido un formato incorrecto");
 		}
 		this.pixeles = guardarPixeles();
 	}

@@ -19,11 +19,13 @@ public class App
         	System.out.println("ERROR: El ajuste de brillo ["+args[1]+"] es "
         			+ "demasiado pequeño."
         			+ "\n"+ "Debe ser un numero comprendido entre -255 y 255.");
+        	return;
         }
         if(Integer.parseInt(args[1]) > 255 ) {
         	System.out.println("ERROR: El ajuste de brillo ["+args[1]+"] es "
         			+ "demasiado grande."
         			+ "\n"+ "Debe ser un numero comprendido entre -255 y 255.");
+        	return;
         }
         
         ImagenFil img = null;
@@ -31,7 +33,7 @@ public class App
         	img = new ImagenFil(args[0]);
         }
         catch(Exception e) {
-        	System.out.println(e);
+        	System.out.println(e.getMessage());
         	return;
         }
         img.ajustarBrillo(args[1]);
