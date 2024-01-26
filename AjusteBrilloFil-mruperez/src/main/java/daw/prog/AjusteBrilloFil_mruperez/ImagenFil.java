@@ -2,6 +2,7 @@ package daw.prog.AjusteBrilloFil_mruperez;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class ImagenFil {
 	
@@ -86,16 +87,22 @@ public class ImagenFil {
 	
 	private int[][] guardarPixeles() throws IllegalArgumentException{
 		int[][] pixeles = new int [this.cantidadDePixeles][3];
-		String [] cadenaPixeles = new String [3];
+		String [] cadenaPixeles;
 		
 		for(int i = 0; i < this.cantidadDePixeles; i++) {
-			cadenaPixeles = this.infoFichero[i+3].split(",", 3);
+			cadenaPixeles = this.infoFichero[i+3].split(",");
+			if(cadenaPixeles.length != 3) {
+				throw new IllegalArgumentException("ERROR: '"+Arrays.toString(cadenaPixeles)+"'"
+				+ " no sigue con el formato que debe tener el fichero.");
+			}
 			
 			for (int j = 0; j < 3;j++) {
+				
 				if(cadenaPixeles[j].length() == 0 || !Utilidades.esNumero(cadenaPixeles[j])) {
 					throw new IllegalArgumentException("ERROR: ["+cadenaPixeles[j]+"]"
 					+ " no sigue con el formato que debe tener el fichero.");
 				}
+				
 				if(Integer.parseInt(cadenaPixeles[j]) > 255 || Integer.parseInt(cadenaPixeles[j]) < 0) {
 					throw new IllegalArgumentException("ERROR: ["+cadenaPixeles[j]+"]"
 					+ " Los pixeles del fichero deben estar comprendidos entre 0 y 255.");
