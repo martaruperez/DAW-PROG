@@ -38,7 +38,7 @@ public class ImagenFil {
 		
 		this.ancho = this.infoFichero[1];
 		this.altura = this.infoFichero[2];
-		if(!Utilidades.esNumero(this.altura) || Utilidades.esNumero(this.ancho)) {
+		if(!Utilidades.esNumero(this.altura) || !Utilidades.esNumero(this.ancho)) {
 			throw new Exception("ERROR: La altura y el ancho deben ser numeros.");
 		}
 		
