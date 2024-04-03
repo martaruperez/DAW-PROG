@@ -1,10 +1,9 @@
 package com.gsd.daw.prog;
-import java.text.DecimalFormat;
 
 public class Evaluacion {
 	private Nota[] notas;
-	private int cExamenes = 0;
-	private int cPracticas = 0;
+	private int cantidadDeExamenes = 0;
+	private int cantidadDePracticas = 0;
 	private double notaFinal;
 	
 	public Evaluacion(Nota[] notas) throws IllegalArgumentException{
@@ -27,10 +26,10 @@ public class Evaluacion {
 					cActitud++;
 				break;
 				case 'P':
-					this.cPracticas++;
+					this.cantidadDePracticas++;
 				break;
 				case 'C':
-					this.cExamenes++;
+					this.cantidadDeExamenes++;
 				break;
 			}
 		}
@@ -43,60 +42,56 @@ public class Evaluacion {
 			return false;
 		}
 		//que haya al menos un examen
-		if(this.cExamenes < 1) {
+		if(this.cantidadDeExamenes < 1) {
 			return false;
 		}
 		//que haya al menos una practica
-		if(this.cPracticas < 1) {
+		if(this.cantidadDePracticas < 1) {
 			return false;
 		}
 		
 		return true; 
 	}
 	
-	public void calcular() {
+	public double calcularNota() {
 		double notasTeoria = 0;
 		double notasParticipacion = 0;
-		double notaFinal;
 		double mediaTeoria;
 		
 		for(int i = 0; i < notas.length; i++) {
 			if(notas[i].getTipoDeNota()=='C') {
 				if(notas[i].getNota() < 3) {
 					this.notaFinal = 0.00; 
-					System.out.println(this.notaFinal);
-					return;
+					return this.notaFinal;
 				}
 				notasTeoria += notas[i].getNota();
 			}
+			
 			if(notas[i].getTipoDeNota()=='P') {
 				if(notas[i].getNota() < 4) {
 					this.notaFinal = 0.00; 
-					System.out.println(this.notaFinal);
-					return; 
+					return this.notaFinal; 
 				}
 				notasTeoria += notas[i].getNota();
 			} 
+			
 			if(notas[i].getTipoDeNota()=='A' || notas[i].getTipoDeNota()=='T') {
 				notasParticipacion += notas[i].getNota();
 			}
 		}
 		
-
-		mediaTeoria = (notasTeoria / (this.cExamenes + this.cPracticas) );
+		mediaTeoria = (notasTeoria / (this.cantidadDeExamenes + this.cantidadDePracticas) );
 		
 		if(mediaTeoria < 4) {
 			this.notaFinal = mediaTeoria;
 		}
 		else {
-			this.notaFinal = (mediaTeoria * 0.8)+ notasParticipacion; 
+			//Si la teoría (sobre 10) no es menor que 4
+			//la nota final es 80% la teoría, mas actitud, mas asistencia
+			this.notaFinal = (mediaTeoria * 0.8) + notasParticipacion; 
 		}
-		if(this.notaFinal == 10.00) {
-			System.out.println("MH");
-			return;
-		}
-		 DecimalFormat print = new DecimalFormat("#.00");
-		 System.out.println(print.format(this.notaFinal));
+		
+		return this.notaFinal;
 	}
 	
 	public double getNotaFinal() {

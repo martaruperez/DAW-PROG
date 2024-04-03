@@ -1,4 +1,5 @@
 package com.gsd.daw.prog;
+import java.text.DecimalFormat;
 
 public class App 
 {
@@ -18,13 +19,19 @@ public class App
 			for(int i = 0; i < args.length; i++) {
 				notas[i] = new Nota(args[i]);
 			}
-			Evaluacion ev = new Evaluacion (notas);
-			ev.calcular();
+			Evaluacion evaluacion = new Evaluacion (notas);
+			double notaFinal = evaluacion.calcularNota();
+			
+			if(notaFinal == 10.00) {
+				System.out.println("MH");
+				return;
+			}
+			 DecimalFormat print = new DecimalFormat("#.00");
+			 System.out.println(print.format(notaFinal));
 		} 
 		catch(IllegalArgumentException e) {
-			System.err.println(e);
+			System.err.println(e.getMessage());
 			return;
 		}
     }
-    
 }
