@@ -23,9 +23,6 @@ public class LectorDeBaseDeDatos {
         
         int i = 0;
         while ( resultSet.next() ) {
-        	if(!(i < TAMANIO_MAXIMO)) {
-        		throw new Exception(("ERROR: La tabla es demasiado grande, tamaño maximo: "+TAMANIO_MAXIMO));
-        	}
             try {
             	resultadoConsulta[i][0] = resultSet.getString( "IP" ) ;
             	resultadoConsulta[i][1] = resultSet.getString( "timestamp" ) ;

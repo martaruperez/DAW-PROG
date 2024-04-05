@@ -54,9 +54,10 @@ public class Evaluacion {
 	}
 	
 	public double calcularNota() {
-		double notasTeoria = 0;
 		double notasParticipacion = 0;
 		double mediaTeoria;
+		double sumExamenes = 0;
+		double sumPracticas = 0;
 		
 		for(int i = 0; i < notas.length; i++) {
 			if(notas[i].getTipoDeNota()=='C') {
@@ -64,23 +65,25 @@ public class Evaluacion {
 					this.notaFinal = 0.00; 
 					return this.notaFinal;
 				}
-				notasTeoria += notas[i].getNota();
+				sumExamenes += notas[i].getNota();
 			}
 			
 			if(notas[i].getTipoDeNota()=='P') {
-				if(notas[i].getNota() < 4) {
+				if(notas[i].getNota() < 5) {
 					this.notaFinal = 0.00; 
 					return this.notaFinal; 
 				}
-				notasTeoria += notas[i].getNota();
+				sumPracticas += notas[i].getNota();
 			} 
 			
 			if(notas[i].getTipoDeNota()=='A' || notas[i].getTipoDeNota()=='T') {
 				notasParticipacion += notas[i].getNota();
 			}
 		}
-		
-		mediaTeoria = (notasTeoria / (this.cantidadDeExamenes + this.cantidadDePracticas) );
+
+		double mediaExamenes = sumExamenes / this.cantidadDeExamenes;
+		double mediaPracticas = sumPracticas / this.cantidadDePracticas;
+		mediaTeoria = (mediaExamenes + mediaPracticas)/2;
 		
 		if(mediaTeoria < 4) {
 			this.notaFinal = mediaTeoria;
@@ -88,7 +91,8 @@ public class Evaluacion {
 		else {
 			//Si la teoría (sobre 10) no es menor que 4
 			//la nota final es 80% la teoría, mas actitud, mas asistencia
-			this.notaFinal = (mediaTeoria * 0.8) + notasParticipacion; 
+			this.notaFinal = mediaTeoria*0.80 ;
+			this.notaFinal += notasParticipacion;
 		}
 		
 		return this.notaFinal;

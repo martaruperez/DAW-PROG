@@ -86,5 +86,4 @@ public class Nota {
 	public double getNota() {
 		return this.nota;
 	}
-	
 }
