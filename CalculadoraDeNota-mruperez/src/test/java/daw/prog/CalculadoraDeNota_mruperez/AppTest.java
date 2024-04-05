@@ -248,6 +248,7 @@ public class AppTest
     }
     
     /*
+     * Clase Evaluacion:
      * Comprueba que se devuelve un cero como nota final
      * si una nota de examen es menor que tres
      */
@@ -265,6 +266,7 @@ public class AppTest
     	assertEquals(0, e.calcularNota());
     }
     /*
+     * COVERAGE Y ROBUSTEZ:
      * Comprueba que se lanza una excepcion si hay mas de una nota de actitud 
      */
     @DisplayName("Lanza excepcion si hay mas de una nota de actitud")
@@ -288,6 +290,7 @@ public class AppTest
     }
     
     /*
+     * COVERAGE:
      * Comprueba que la clase main funciona correctamente si los argumentos
      * son los esperados 
      */
@@ -299,7 +302,7 @@ public class AppTest
     	assertTrue(true);
     }
     
-    /*
+    /* COVERAGE:
      * Comprueba que la clase main funciona con argumentos incorrectos
      */
     @DisplayName("La clase main funciona con argumentos incorrectos")
@@ -311,6 +314,7 @@ public class AppTest
     }
     
     /*
+     * Clase evaluacion:
      * Comprueba que devuelve cero si una nota de practicas es menor que cuatro
      */
     @DisplayName("Devuelve cero si una nota de practicas es menor que cuatro")
@@ -327,7 +331,7 @@ public class AppTest
     	assertEquals(0, e.calcularNota());
     }
     
-    /*
+    /* COVERAGE Y ROBUSTEZ:
      * Comprueba que muestra error y se detiene si hay mas de veinte argumentos
      */
     @DisplayName("Muestra error y se detiene si hay demasiados argumentos")
