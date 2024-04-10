@@ -211,12 +211,11 @@ public class AppTest
     
     /*
      * Clase Evaluacion:
-     * Comprueba que se devuelve una nota final correcta si los 
-     * argumentos son correctos
+     * Comprueba que la nota final es 7.2 para los argumentos que dan esa nota.
      */
-    @DisplayName("Calcula una nota final correcta")
+    @DisplayName("Calcula que la nota final es siete con dos")
     @Test 
-    public void calculaNotaConArgumentosCorrectosBien() {
+    public void calculaNotaParaUnSieteConDos() {
     	Nota asistencia = new Nota("A-1");
     	Nota practica = new Nota("P-5");
     	Nota actitud = new Nota("T-1");
@@ -226,6 +225,44 @@ public class AppTest
     	Evaluacion e = new Evaluacion (notas);
     	
     	assertEquals(7.2, e.calcularNota());
+    }
+    
+    /*
+     * Clase Evaluacion:
+     * Comprueba que la nota final es 10 para los argumentos que dan esa nota.
+     * No se puede comprobar que imprima "MH", porque no se puede comprobar lo que 
+     * imprime.
+     */
+    @DisplayName("Calcula que la nota final es diez")
+    @Test 
+    public void calculaNotaParaUnDiez() {
+    	Nota asistencia = new Nota("A-1");
+    	Nota practica = new Nota("P-10");
+    	Nota actitud = new Nota("T-1");
+    	Nota examen = new Nota("C-10");
+    	
+    	Nota[] notas = {asistencia, practica, actitud, examen};
+    	Evaluacion e = new Evaluacion (notas);
+    	
+    	assertEquals(10, e.calcularNota());
+    }
+    
+    /*
+     * Clase Evaluacion:
+     * Comprueba que la nota final es 5 para los argumentos que dan esa nota.
+     */
+    @DisplayName("Calcula que la nota final es diez")
+    @Test 
+    public void calculaNotaParaUnCinco() {
+    	Nota asistencia = new Nota("A-0.5");
+    	Nota practica = new Nota("P-5");
+    	Nota actitud = new Nota("T-0.5");
+    	Nota examen = new Nota("C-5");
+    	
+    	Nota[] notas = {asistencia, practica, actitud, examen};
+    	Evaluacion e = new Evaluacion (notas);
+    	
+    	assertEquals(5, e.calcularNota());
     }
     
     /*
@@ -291,8 +328,8 @@ public class AppTest
     
     /*
      * COVERAGE:
-     * Comprueba que la clase main funciona correctamente si los argumentos
-     * son los esperados 
+     * Ejecuta la clase main con argumentos
+     * deseados 
      */
     @DisplayName("La clase main funciona con argumentos correctos")
     @Test
@@ -303,7 +340,7 @@ public class AppTest
     }
     
     /* COVERAGE:
-     * Comprueba que la clase main funciona con argumentos incorrectos
+     * Comprueba que la clase main responde a argumentos incorrectos
      */
     @DisplayName("La clase main funciona con argumentos incorrectos")
     @Test
