@@ -251,7 +251,7 @@ public class AppTest
      * Clase Evaluacion:
      * Comprueba que la nota final es 5 para los argumentos que dan esa nota.
      */
-    @DisplayName("Calcula que la nota final es diez")
+    @DisplayName("Calcula que la nota final es cinco")
     @Test 
     public void calculaNotaParaUnCinco() {
     	Nota asistencia = new Nota("A-0.5");
@@ -287,9 +287,9 @@ public class AppTest
     /*
      * Clase Evaluacion:
      * Comprueba que se devuelve un cero como nota final
-     * si una nota de examen es menor que tres
+     * si una nota de practica es menor que cuatro
      */
-    @DisplayName("Devuelve cero si una nota de examen es menor que tres")
+    @DisplayName("Devuelve cero si una nota de practica es menor que cuatro")
     @Test
     public void comprobarQueLaNotaEsCeroSiUnaPracticaEsMenorQueCuatro() {
     	Nota asistencia = new Nota("A-1");
@@ -354,7 +354,7 @@ public class AppTest
      * Clase evaluacion:
      * Comprueba que devuelve cero si una nota de practicas es menor que cuatro
      */
-    @DisplayName("Devuelve cero si una nota de practicas es menor que cuatro")
+    @DisplayName("Devuelve cero si una nota de teoria es menor que cuatro")
     @Test
     public void comprobarConNotaDeTeoriaMenorQueCuatro() {
     	Nota asistencia = new Nota("A-1");

@@ -26,7 +26,7 @@ public class App {
 				System.out.println("MH");
 				return;
 			}
-			 DecimalFormat print = new DecimalFormat("#.00");
+			 DecimalFormat print = new DecimalFormat("0.00");
 			 System.out.println(print.format(notaFinal));
 		} 
 		catch(IllegalArgumentException e) {
