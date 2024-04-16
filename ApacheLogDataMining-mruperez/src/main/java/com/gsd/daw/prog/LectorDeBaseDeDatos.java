@@ -17,43 +17,31 @@ public class LectorDeBaseDeDatos {
 		
 	}
 	
-    public ArrayList extraerTabla( ) throws Exception {
+    public List<Log> extraerTabla( ) throws Exception {
     	
         Statement stmt = this.conn.createStatement();
         ResultSet resultSet = stmt.executeQuery( "SELECT * FROM apache_log_tbl" );
-        List <List> resultadoConsulta=new ArrayList<>();
+        List <Log> resultadoConsulta=new ArrayList<>();
         
-        int i = 0;
+        String[] linea = new String[COLUMNAS];
         while ( resultSet.next() ) {
             try {
-            	
-            	
-//            	resultadoConsulta[i][0] = resultSet.getString( "IP" ) ;
-//            	resultadoConsulta[i][1] = resultSet.getString( "timestamp" ) ;
-//            	resultadoConsulta[i][2] = resultSet.getString( "request" ) ;
-//            	resultadoConsulta[i][3] = resultSet.getString( "result" ) ;
-//            	resultadoConsulta[i][4] = resultSet.getString( "bytes" ) ;
-//            	resultadoConsulta[i][5] = resultSet.getString( "ua" ) ;
+            	linea[0] = resultSet.getString( "IP" ) ;
+            	linea[1] = resultSet.getString( "timestamp" ) ;
+            	linea[2] = resultSet.getString( "request" ) ;
+            	linea[3] = resultSet.getString( "result" ) ;
+            	linea[4] = resultSet.getString( "bytes" ) ;
+            	linea[5] = resultSet.getString( "ua" ) ;
+            	Log l = new Log(linea);
+            	resultadoConsulta.add(l);
             } 
             catch(NumberFormatException e) {
 
             }
-            i++;
         }
         resultSet.close();
         stmt.close();
         conn.close();
-        
-//        if( resultadoConsulta.length == i ) {return resultadoConsulta;}
-//        
-//        String aux[][] = new String [i][6];
-//        
-//		for(int j = (resultadoConsulta.length-1); j >= 0; j--) {
-//			if(resultadoConsulta[j][0] != null) {
-//				aux[i-1]=resultadoConsulta[j];
-//				i--;
-//			}
-//		}
-//        return aux;
+        return resultadoConsulta;
     }
 }
