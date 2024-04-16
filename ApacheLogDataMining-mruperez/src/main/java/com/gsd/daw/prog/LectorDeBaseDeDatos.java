@@ -20,7 +20,7 @@ public class LectorDeBaseDeDatos {
     public List<Log> extraerTabla( ) throws Exception {
     	
         Statement stmt = this.conn.createStatement();
-        ResultSet resultSet = stmt.executeQuery( "SELECT * FROM apache_log_tbl" );
+        ResultSet resultSet = stmt.executeQuery( "SELECT * FROM apache_log_tbl2" );
         List <Log> resultadoConsulta=new ArrayList<>();
         
         String[] linea = new String[COLUMNAS];

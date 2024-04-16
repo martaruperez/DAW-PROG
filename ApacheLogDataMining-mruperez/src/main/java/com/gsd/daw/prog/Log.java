@@ -24,18 +24,21 @@ public class Log {
 	}
 
     public void save( Connection conn) throws SQLException {
-
-    	PreparedStatement sentencia= conn.prepareStatement("INSERT INTO APACHE_LOG_TBL2 VALUES(?,?,?,?,?,?)"); 
-    	sentencia.setString(1, this.ip);
-    	sentencia.setString(2, this.timestamp);
-    	sentencia.setString(3, this.request);
-    	sentencia.setInt(4, this.result);
-    	sentencia.setString(5, this.bytes);
-    	sentencia.setString(6, this.ua);
-    	ResultSet rs = sentencia.executeQuery();
     	
-    	rs.close();
-    	sentencia.close();
+    	try{
+    		PreparedStatement sentencia= conn.prepareStatement("INSERT INTO APACHE_LOG_TBL2 (ip, timestamp, request, result, bytes, ua) VALUES(?,?,?,?,?,?)");
+	    	sentencia.setString(1, this.ip);
+	    	sentencia.setString(2, this.timestamp);
+	    	sentencia.setString(3, this.request);
+	    	sentencia.setInt(4, this.result);
+	    	sentencia.setString(5, this.bytes);
+	    	sentencia.setString(6, this.ua);
+	    	int row = sentencia.executeUpdate();
+	    	sentencia.close();
+    	}
+    	catch(SQLException e) {
+    		throw e;
+    	}
     }
     
     public String getIp() {
