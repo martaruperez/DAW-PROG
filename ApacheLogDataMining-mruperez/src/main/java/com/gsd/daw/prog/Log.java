@@ -26,7 +26,7 @@ public class Log {
     public void save( Connection conn) throws SQLException {
     	
     	try{
-    		PreparedStatement sentencia= conn.prepareStatement("INSERT INTO APACHE_LOG_TBL2 (ip, timestamp, request, result, bytes, ua) VALUES(?,?,?,?,?,?)");
+    		PreparedStatement sentencia= conn.prepareStatement("INSERT INTO APACHE_LOG_TBL (ip, timestamp, request, result, bytes, ua) VALUES(?,?,?,?,?,?)");
 	    	sentencia.setString(1, this.ip);
 	    	sentencia.setString(2, this.timestamp);
 	    	sentencia.setString(3, this.request);
