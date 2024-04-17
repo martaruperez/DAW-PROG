@@ -2,8 +2,14 @@ package com.gsd.daw.prog;
 
 import java.sql.Connection;
 import java.util.Iterator;
+import java.util.logging.Logger;
 
 public class ApacheLogLoader {
+	private final static Logger LOGGER = Logger.getLogger( "LOGGER TEST 1" );
+	private String varEntorno = System.getenv().get("LOG_LEVEL");
+//	if () {
+//		
+//	}
 	public static void main( String[] args ) {
 	    BaseDeDatos bbdd = null;
     	
