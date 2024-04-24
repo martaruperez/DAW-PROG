@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Built-By: m.ruperez
+Build-Jdk: 17.0.9
+Main-Class: daw.prog.AjusteBrilloFil_mruperez.App
+Created-By: Maven Integration for Eclipse
+
