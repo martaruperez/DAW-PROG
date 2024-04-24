@@ -80,7 +80,7 @@ public class AppTest
     	}
     }
     /*
-     * COVERAGE Y ROBUSTEZ: Comprueba que se lanza una excepcion si a nota de asistencia es mayor
+     * COVERAGE Y ROBUSTEZ: Comprueba que se lanza una excepcion si la nota de asistencia es mayor
      * que uno.
      */
     @DisplayName("Lanza excepcion por nota de asistencia demasiado grande")
@@ -263,6 +263,41 @@ public class AppTest
     	Evaluacion e = new Evaluacion (notas);
     	
     	assertEquals(5, e.calcularNota());
+    }
+    
+    /*
+     * Clase Evaluacion:
+     * Comprueba que la nota final es 4,20 para los argumentos que dan esa nota.
+     */
+    @DisplayName("Calcula que la nota final es cuatro con dos")
+    @Test 
+    public void calculaNotaParaUnCuatroConDos() {
+    	Nota asistencia = new Nota("A-0.5");
+    	Nota practica = new Nota("P-5");
+    	Nota actitud = new Nota("T-0.5");
+    	Nota examen = new Nota("C-3");
+    	
+    	Nota[] notas = {asistencia, practica, actitud, examen};
+    	Evaluacion e = new Evaluacion (notas);
+    	
+    	assertEquals(4.2, e.calcularNota());
+    }
+    
+    /*
+     * Clase Evaluacion:
+     * Comprueba que la nota final es 4,94 para los argumentos que dan esa nota.
+     */
+    @DisplayName("Calcula que la nota final es cuatro con noventa y cuatro")
+    @Test 
+    public void calculaNotaParaUnCuatroConNoventaYCuatro() {
+    	String [] args = {"P-5.6", "P-6.3", "P-7.5", "P-5.6", "P-6.3", "P-7.5", "P-6.3", "P-5.6", "P-6.3", "P-7.5", "P-5.6", "P-6.3", "P-7.5", "C-7.5", "C-5.2", "C-5.5", "C-5.6", "C-5.7", "A-0", "T-0"};
+    	Nota[] notas = new Nota[args.length];
+    	for(int i=0; i<args.length; i++) {
+    		notas[i]= new Nota(args[i]);
+    	}
+    	
+    	Evaluacion e = new Evaluacion(notas);
+    	assertEquals(4.941538461538461, e.calcularNota());
     }
     
     /*
