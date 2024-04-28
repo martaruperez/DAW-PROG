@@ -8,6 +8,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.Iterator;
 import java.util.logging.Logger;
+//TODO: Revisar pom.xml del proyecto
 
 public class ApacheLogLoader {
 	private final static Logger LOGGER = Logger.getLogger( "LOGGER TEST 1" );
