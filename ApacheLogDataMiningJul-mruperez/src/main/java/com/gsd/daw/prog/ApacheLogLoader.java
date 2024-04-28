@@ -29,8 +29,8 @@ public class ApacheLogLoader {
     	
 		// Comprobación de argumentos
 	    if(args.length < 5 || args.length > 6 ) {
-    		System.out.println("ERROR: Argumentos incorrectos."+
-    						"\n"+"FORMATO: [ip] [nombre-BBDD] [username] [password] [fichero] [opcional: SGBD]");
+	    	LOGGER.log(Level.SEVERE, "ERROR: Argumentos incorrectos."+
+					"\n"+"FORMATO: [ip] [nombre-BBDD] [username] [password] [fichero] [opcional: SGBD]");
     		return;
     	}
     	
@@ -47,7 +47,7 @@ public class ApacheLogLoader {
     	Connection conn=null;
 	    try{
 	    	conn = bbdd.getConexion(args[2], args[3]);
-	    	System.out.println( "INFO: conectado a la BBDD." );
+	    	LOGGER.log(Level.INFO, "Conectado a la BBDD.");
 	    }
 	    catch(Exception e) {
 	    	//System.out.println(e);
@@ -67,8 +67,7 @@ public class ApacheLogLoader {
     		System.out.println(e.getMessage());
     		return;
     	}
-    	
-	    System.out.println( "INFO: leidas ["+ lector.length() + "] lineas del fichero." );
+    	LOGGER.log(Level.INFO, "Leidas [" + lector.length() + "] lineas del fichero.");
 
 	    // Conversion de estructuras planas a objetos del modelo
 	    // Crea una clase que modele los datos que tiene una linea de log de Apache
@@ -80,10 +79,10 @@ public class ApacheLogLoader {
 	    int j = 0;
 	    for (int i = 0; i < s.length; i++) {
 			logs[j]= new Log(s[i]);
+			LOGGER.log(Level.FINE,"");
 			j++;
 		}
-	    
-	    System.out.println( "INFO: creados [" + logs.length + "] objetos del modelo." );
+	    LOGGER.log(Level.INFO, "Creados [" + logs.length + "] objetos del modelo.");
 
 	    // Guardado de los objetos del modelo en BBDD
 	    // La clase del modelo debe tener un método save( Connection ) que recibe una
@@ -92,10 +91,11 @@ public class ApacheLogLoader {
 	    	int i = 0;
 	    	while (i < logs.length) {
 				logs[i].save(conn);
+				LOGGER.log(Level.FINE,"");
 				i++;
 			}
 	    	conn.close();
-	    	System.out.println( "INFO: insertadas [" + i + "] filas en BBDD." );
+	    	LOGGER.log(Level.INFO,"Insertadas [" + i + "] filas en BBDD.");
 	    }
 	    catch (Exception e) {
 			System.out.println("ERROR: Inserción fallida: "+e.getMessage());
