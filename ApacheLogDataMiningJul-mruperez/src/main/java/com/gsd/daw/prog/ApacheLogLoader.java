@@ -1,6 +1,11 @@
 package com.gsd.daw.prog;
 
 import java.sql.Connection;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
@@ -11,6 +16,15 @@ public class ApacheLogLoader {
 //		
 //	}
 	public static void main( String[] args ) {
+		
+        InputStream ficheroDeConfiguracion = ApacheLogLoader.class.getClassLoader().getResourceAsStream( "config/logging-prod.properties" );
+        try {
+            LogManager.getLogManager().readConfiguration( ficheroDeConfiguracion );
+        } catch ( IOException e ) {
+            e.printStackTrace();
+            return;
+        }
+		
 	    BaseDeDatos bbdd = null;
     	
 		// Comprobación de argumentos
