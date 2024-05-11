@@ -30,8 +30,7 @@ public class ApacheLogLoader {
     	
 		// Comprobación de argumentos
 	    if(args.length < 5 || args.length > 6 ) {
-	    	LOGGER.log(Level.SEVERE, "ERROR: Argumentos incorrectos."+
-					"\n"+"FORMATO: [ip] [nombre-BBDD] [username] [password] [fichero] [opcional: SGBD]");
+	    	LOGGER.log(Level.SEVERE, "ERROR: Argumentos incorrectos."+"\n"+"FORMATO: [ip] [nombre-BBDD] [username] [password] [fichero] [opcional: SGBD]");
     		return;
     	}
     	
