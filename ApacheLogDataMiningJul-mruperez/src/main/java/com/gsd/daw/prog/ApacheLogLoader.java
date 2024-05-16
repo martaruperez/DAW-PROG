@@ -1,106 +1,96 @@
 package com.gsd.daw.prog;
 
-import java.sql.Connection;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
-import java.util.Iterator;
-import java.util.logging.Logger;
-//TODO: Revisar pom.xml del proyecto
 
 public class ApacheLogLoader {
-	private final static Logger LOGGER = Logger.getLogger( "LOGGER TEST 1" );
-	private String varEntorno = System.getenv().get("LOG_LEVEL");
-//	if () {
-//		
-//	}
-	public static void main( String[] args ) {
-		
-        InputStream ficheroDeConfiguracion = ApacheLogLoader.class.getClassLoader().getResourceAsStream( "config/logging-prod.properties" );
+    private static final Logger LOGGER = Logger.getLogger(ApacheLogLoader.class.getName());
+    private static final DateTimeFormatter TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    public static void main(String[] args) {
+        // Cargar la configuración de logging desde un archivo de propiedades
+        InputStream configFile = ApacheLogLoader.class.getClassLoader().getResourceAsStream("config/logging-prod.properties");
         try {
-            LogManager.getLogManager().readConfiguration( ficheroDeConfiguracion );
-        } catch ( IOException e ) {
-            e.printStackTrace();
+            LogManager.getLogManager().readConfiguration(configFile);
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Error al cargar la configuración de logging: "+e);
             return;
         }
-		
-	    BaseDeDatos bbdd = null;
-    	
-		// Comprobación de argumentos
-	    if(args.length < 5 || args.length > 6 ) {
-	    	LOGGER.log(Level.SEVERE, "ERROR: Argumentos incorrectos."+"\n"+"FORMATO: [ip] [nombre-BBDD] [username] [password] [fichero] [opcional: SGBD]");
-    		return;
-    	}
-    	
-	    // Creacion de la conexión
-    	switch(args.length) {
-    		case 5:
-    			 bbdd = new BaseDeDatos(args[0], args[1]);
-    		break;
-    		case 6:
-    			 bbdd = new BaseDeDatos(args[0], args[1], args[5]);
-    		break;
-    	}
-    	
-    	Connection conn=null;
-	    try{
-	    	conn = bbdd.getConexion(args[2], args[3]);
-	    	LOGGER.log(Level.INFO, "Conectado a la BBDD.");
-	    }
-	    catch(Exception e) {
-	    	//System.out.println(e);
-	    	System.out.println("ERROR: Conexión a la BBDD fallida, revise sus parámetros.");
-	    	return;
-	    }
-	    // Lectura de datos a estructuras planas
-	    // Esto sin colecciones será un String[][] array de tamaño máximo 10000
-	    // elementos
-	    // Crea una clase aparte cuya responsabilidad sea recibir un nombre de fichero
-	    // y devolver una estructura String[10000][6] con los datos en columnas
-	    LectorDeLineasDeLog lector = null;
-	    try {
-    		lector = new LectorDeLineasDeLog(args[4]);
-    	}
-    	catch(Exception e ) {
-    		System.out.println(e.getMessage());
-    		return;
-    	}
-    	LOGGER.log(Level.INFO, "Leidas [" + lector.length() + "] lineas del fichero.");
 
-	    // Conversion de estructuras planas a objetos del modelo
-	    // Crea una clase que modele los datos que tiene una linea de log de Apache
-	    // Convierte la estructura "anónima" en un array de objetos del modelo
-	    
-	    String[][] s = lector.obtenerColumnasDeLogs();
-	    Log[] logs = new Log[s.length];
-	    
-	    int j = 0;
-	    for (int i = 0; i < s.length; i++) {
-			logs[j]= new Log(s[i]);
-			LOGGER.log(Level.FINE,"");
-			j++;
-		}
-	    LOGGER.log(Level.INFO, "Creados [" + logs.length + "] objetos del modelo.");
+        // Obtener el nivel de log desde la variable de entorno
+        String logLevelEnvVar = System.getenv("LOG_LEVEL");
+        if (logLevelEnvVar != null) {
+            try {
+                Level logLevel = Level.parse(logLevelEnvVar);
+                LOGGER.setLevel(logLevel);
+                LOGGER.log(Level.INFO, "LogLevel forzado a ["+logLevel+"]");
+            } catch (IllegalArgumentException e) {
+            	LOGGER.log(Level.SEVERE,"Nivel de log inválido: "+logLevelEnvVar);
+            }
+        }
 
-	    // Guardado de los objetos del modelo en BBDD
-	    // La clase del modelo debe tener un método save( Connection ) que recibe una
-	    // conexion JDBC y hace que los datos del objeto se guarden en BBDD
-	    try {
-	    	int i = 0;
-	    	while (i < logs.length) {
-				logs[i].save(conn);
-				LOGGER.log(Level.FINE,"");
-				i++;
+        // Validación de argumentos
+        if (args.length < 5 || args.length > 6) {
+        	LOGGER.log(Level.SEVERE,"ERROR: Argumentos incorrectos.\nFORMATO: [ip] [nombre-BBDD] [username] [password] [fichero] [opcional: SGBD]");
+            return;
+        }
+
+        // Crear la conexión a la base de datos
+        BaseDeDatos bbdd;
+        if (args.length == 5) {
+            bbdd = new BaseDeDatos(args[0], args[1]);
+        } else {
+            bbdd = new BaseDeDatos(args[0], args[1], args[5]);
+        }
+
+        Connection conn;
+        try {
+            conn = bbdd.getConexion(args[2], args[3]);
+            LOGGER.log(Level.INFO, "Conectado a la BBDD.");
+        } catch (Exception e) {
+        	LOGGER.log(Level.SEVERE, "ERROR: Conexión a la BBDD fallida, revise sus parámetros: " + e);
+            return;
+        }
+
+        // Leer los datos del archivo de log
+        LectorDeLineasDeLog lector;
+        try {
+            lector = new LectorDeLineasDeLog(args[4]);
+            LOGGER.log(Level.INFO,"Leidas ["+lector.length()+"] lineas del fichero.");
+        } catch (Exception e) {
+        	LOGGER.log(Level.SEVERE, "ERROR: No se pudo leer el archivo de log.", e);
+            return;
+        }
+
+        // Convertir las líneas de log a objetos del modelo
+        String[][] logData = lector.obtenerColumnasDeLogs();
+        Log[] logs = new Log[logData.length];
+        for (int i = 0; i < logData.length; i++) {
+            logs[i] = new Log(logData[i]);
+            LOGGER.log(Level.FINE, "Parseada linea ["+i+"] con timestamp: " +TIMESTAMP_FORMATTER.format(LocalDateTime.now())); 
+        }
+        LOGGER.log(Level.INFO, "Creados ["+logs.length+"] objetos del modelo.");
+
+        // Guardar los objetos del modelo en la base de datos
+        try {
+            int filas = 0;
+	    	while (filas < logs.length) {
+				logs[filas].save(conn);
+				LOGGER.log(Level.FINE, "Insertando linea ["+filas+"] con timestamp: " +TIMESTAMP_FORMATTER.format(LocalDateTime.now()));
+				filas++;
 			}
-	    	conn.close();
-	    	LOGGER.log(Level.INFO,"Insertadas [" + i + "] filas en BBDD.");
-	    }
-	    catch (Exception e) {
-			System.out.println("ERROR: Inserción fallida: "+e.getMessage());
-			return;
-		}
-	    
-	}
+            conn.close();
+            LOGGER.log(Level.INFO, "Insertadas ["+filas+"] filas en BBDD.");
+        } catch (Exception e) {
+        	LOGGER.log(Level.SEVERE,"ERROR: Inserción fallida: "+e);
+            return;
+        }
+    }
+
 }
