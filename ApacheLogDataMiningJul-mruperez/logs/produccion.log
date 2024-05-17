@@ -95,3 +95,8 @@ ORA-12514, TNS:listener does not currently know of service requested in connect 
 [2024-05-17 10:21:59.619240800] PROD DETALLADO: Insertando linea [12] con timestamp: 30/Jan/2024:00:42:14 +0100
 [2024-05-17 10:21:59.621239900] PROD DETALLADO: Insertando linea [13] con timestamp: 30/Jan/2024:00:42:35 +0100
 [2024-05-17 10:21:59.623238400] PROD INFORMACIÓN: Insertadas [14] filas en BBDD.
+[2024-05-17 10:29:36.729844800] PROD GRAVE: Nivel de log inválido: fdsgafdsbnn
+[2024-05-17 10:29:37.439958400] PROD INFORMACIÓN: Conectado a la BBDD.
+[2024-05-17 10:29:37.449951500] PROD INFORMACIÓN: Leidas [14] lineas del fichero.
+[2024-05-17 10:29:37.458946900] PROD INFORMACIÓN: Creados [14] objetos del modelo.
+[2024-05-17 10:29:37.600209100] PROD INFORMACIÓN: Insertadas [14] filas en BBDD.
