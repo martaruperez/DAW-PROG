@@ -41,6 +41,10 @@ public class Log {
     	}
     }
     
+    public String getTimestamp() {
+    	return this.timestamp;
+    }
+    
     public String getIp() {
     	return this.ip;
     }

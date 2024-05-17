@@ -73,7 +73,7 @@ public class ApacheLogLoader {
         Log[] logs = new Log[logData.length];
         for (int i = 0; i < logData.length; i++) {
             logs[i] = new Log(logData[i]);
-            LOGGER.log(Level.FINE, "Parseada linea ["+i+"] con timestamp: " +TIMESTAMP_FORMATTER.format(LocalDateTime.now())); 
+            LOGGER.log(Level.FINE, "Parseada linea ["+i+"] con timestamp: " +logs[i].getTimestamp()); 
         }
         LOGGER.log(Level.INFO, "Creados ["+logs.length+"] objetos del modelo.");
 
@@ -82,7 +82,7 @@ public class ApacheLogLoader {
             int filas = 0;
 	    	while (filas < logs.length) {
 				logs[filas].save(conn);
-				LOGGER.log(Level.FINE, "Insertando linea ["+filas+"] con timestamp: " +TIMESTAMP_FORMATTER.format(LocalDateTime.now()));
+				LOGGER.log(Level.FINE, "Insertando linea ["+filas+"] con timestamp: " +logs[filas].getTimestamp());
 				filas++;
 			}
             conn.close();
