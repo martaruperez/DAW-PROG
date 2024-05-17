@@ -37,7 +37,7 @@ public class ApacheLogLoader {
 
         // Validación de argumentos
         if (args.length < 5 || args.length > 6) {
-        	LOGGER.log(Level.SEVERE,"ERROR: Argumentos incorrectos.\nFORMATO: [ip] [nombre-BBDD] [username] [password] [fichero] [opcional: SGBD]");
+        	LOGGER.log(Level.SEVERE,"ERROR Argumentos incorrectos.\nFORMATO: [ip] [nombre-BBDD] [username] [password] [fichero] [opcional: SGBD]");
             return;
         }
 
@@ -54,7 +54,7 @@ public class ApacheLogLoader {
             conn = bbdd.getConexion(args[2], args[3]);
             LOGGER.log(Level.INFO, "Conectado a la BBDD.");
         } catch (Exception e) {
-        	LOGGER.log(Level.SEVERE, "ERROR: Conexión a la BBDD fallida, revise sus parámetros: " + e);
+        	LOGGER.log(Level.SEVERE, "ERROR Conexión a la BBDD fallida, revise sus parámetros: " + e);
             return;
         }
 
@@ -64,7 +64,7 @@ public class ApacheLogLoader {
             lector = new LectorDeLineasDeLog(args[4]);
             LOGGER.log(Level.INFO,"Leidas ["+lector.length()+"] lineas del fichero.");
         } catch (Exception e) {
-        	LOGGER.log(Level.SEVERE, "ERROR: No se pudo leer el archivo de log.", e);
+        	LOGGER.log(Level.SEVERE, "ERROR No se pudo leer el archivo de log: "+e);
             return;
         }
 

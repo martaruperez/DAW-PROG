@@ -1,2 +1,9 @@
 [2024-05-17 09:11:29.608105600] PROD GRAVE: ERROR: Argumentos incorrectos.
 FORMATO: [ip] [nombre-BBDD] [username] [password] [fichero] [opcional: SGBD]
+[2024-05-17 09:20:20.942864800] PROD GRAVE: ERROR: Argumentos incorrectos.
+FORMATO: [ip] [nombre-BBDD] [username] [password] [fichero] [opcional: SGBD]
+[2024-05-17 09:27:13.798540900] PROD GRAVE: ERROR: Argumentos incorrectos.
+FORMATO: [ip] [nombre-BBDD] [username] [password] [fichero] [opcional: SGBD]
+[2024-05-17 09:27:32.323476600] PROD GRAVE: ERROR: Conexión a la BBDD fallida, revise sus parámetros: java.sql.SQLRecoverableException: Listener refused the connection with the following error:
+ORA-12514, TNS:listener does not currently know of service requested in connect descriptor
+  (CONNECTION_ID=bsjJjsopQCqEBse/jXeZRA==)
