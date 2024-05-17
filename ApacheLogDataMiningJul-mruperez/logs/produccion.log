@@ -1,0 +1,2 @@
+[2024-05-17 09:11:29.608105600] PROD GRAVE: ERROR: Argumentos incorrectos.
+FORMATO: [ip] [nombre-BBDD] [username] [password] [fichero] [opcional: SGBD]
