@@ -7,3 +7,91 @@ FORMATO: [ip] [nombre-BBDD] [username] [password] [fichero] [opcional: SGBD]
 [2024-05-17 09:27:32.323476600] PROD GRAVE: ERROR: Conexión a la BBDD fallida, revise sus parámetros: java.sql.SQLRecoverableException: Listener refused the connection with the following error:
 ORA-12514, TNS:listener does not currently know of service requested in connect descriptor
   (CONNECTION_ID=bsjJjsopQCqEBse/jXeZRA==)
+[2024-05-17 09:51:16.047148500] PROD GRAVE: ERROR Conexión a la BBDD fallida, revise sus parámetros: java.sql.SQLRecoverableException: Listener refused the connection with the following error:
+ORA-12514, TNS:listener does not currently know of service requested in connect descriptor
+  (CONNECTION_ID=1N2a+5DBQ02gZ+D5Osa9nQ==)
+[2024-05-17 09:51:42.626535600] PROD GRAVE: ERROR Conexión a la BBDD fallida, revise sus parámetros: java.sql.SQLException: ORA-01017: nombre de usuario/contraseña no válidos; conexión denegada
+
+[2024-05-17 09:52:48.620095300] PROD GRAVE: ERROR Conexión a la BBDD fallida, revise sus parámetros: java.sql.SQLException: ORA-01017: nombre de usuario/contraseña no válidos; conexión denegada
+
+[2024-05-17 10:13:39.114495100] PROD GRAVE: ERROR Conexión a la BBDD fallida, revise sus parámetros: java.sql.SQLRecoverableException: Listener refused the connection with the following error:
+ORA-12514, TNS:listener does not currently know of service requested in connect descriptor
+  (CONNECTION_ID=9AULN5xeRLyp1vs3cGQSZw==)
+[2024-05-17 10:15:22.932956700] PROD INFORMACIÓN: Conectado a la BBDD.
+[2024-05-17 10:15:22.975385400] PROD INFORMACIÓN: Leidas [14] lineas del fichero.
+[2024-05-17 10:15:22.984379900] PROD INFORMACIÓN: Creados [14] objetos del modelo.
+[2024-05-17 10:15:23.104675700] PROD GRAVE: ERROR: Inserción fallida: java.sql.SQLSyntaxErrorException: ORA-00942: la tabla o vista no existe
+
+[2024-05-17 10:16:35.737285700] PROD INFORMACIÓN: LogLevel forzado a [FINE]
+[2024-05-17 10:16:36.417689400] PROD INFORMACIÓN: Conectado a la BBDD.
+[2024-05-17 10:16:36.430681700] PROD INFORMACIÓN: Leidas [14] lineas del fichero.
+[2024-05-17 10:16:36.438676000] PROD DETALLADO: Parseada linea [0] con timestamp: 30/Jan/2024:00:16:59 +0100
+[2024-05-17 10:16:36.439675400] PROD DETALLADO: Parseada linea [1] con timestamp: 30/Jan/2024:00:17:17 +0100
+[2024-05-17 10:16:36.439675400] PROD DETALLADO: Parseada linea [2] con timestamp: 30/Jan/2024:00:17:18 +0100
+[2024-05-17 10:16:36.439675400] PROD DETALLADO: Parseada linea [3] con timestamp: 30/Jan/2024:00:23:10 +0100
+[2024-05-17 10:16:36.440674700] PROD DETALLADO: Parseada linea [4] con timestamp: 30/Jan/2024:00:23:33 +0100
+[2024-05-17 10:16:36.440674700] PROD DETALLADO: Parseada linea [5] con timestamp: 30/Jan/2024:00:23:52 +0100
+[2024-05-17 10:16:36.440674700] PROD DETALLADO: Parseada linea [6] con timestamp: 30/Jan/2024:00:24:14 +0100
+[2024-05-17 10:16:36.441673800] PROD DETALLADO: Parseada linea [7] con timestamp: 30/Jan/2024:00:41:11 +0100
+[2024-05-17 10:16:36.441673800] PROD DETALLADO: Parseada linea [8] con timestamp: 30/Jan/2024:00:41:14 +0100
+[2024-05-17 10:16:36.441673800] PROD DETALLADO: Parseada linea [9] con timestamp: 30/Jan/2024:00:41:32 +0100
+[2024-05-17 10:16:36.442673100] PROD DETALLADO: Parseada linea [10] con timestamp: 30/Jan/2024:00:41:33 +0100
+[2024-05-17 10:16:36.442673100] PROD DETALLADO: Parseada linea [11] con timestamp: 30/Jan/2024:00:41:55 +0100
+[2024-05-17 10:16:36.442673100] PROD DETALLADO: Parseada linea [12] con timestamp: 30/Jan/2024:00:42:14 +0100
+[2024-05-17 10:16:36.442673100] PROD DETALLADO: Parseada linea [13] con timestamp: 30/Jan/2024:00:42:35 +0100
+[2024-05-17 10:16:36.443672800] PROD INFORMACIÓN: Creados [14] objetos del modelo.
+[2024-05-17 10:16:36.565594300] PROD GRAVE: ERROR: Inserción fallida: java.sql.SQLSyntaxErrorException: ORA-00942: la tabla o vista no existe
+
+[2024-05-17 10:19:56.721757100] PROD INFORMACIÓN: LogLevel forzado a [FINE]
+[2024-05-17 10:19:57.404378500] PROD INFORMACIÓN: Conectado a la BBDD.
+[2024-05-17 10:19:57.419368800] PROD INFORMACIÓN: Leidas [14] lineas del fichero.
+[2024-05-17 10:19:57.437357600] PROD DETALLADO: Parseada linea [0] con timestamp: 30/Jan/2024:00:16:59 +0100
+[2024-05-17 10:19:57.440355800] PROD DETALLADO: Parseada linea [1] con timestamp: 30/Jan/2024:00:17:17 +0100
+[2024-05-17 10:19:57.442354700] PROD DETALLADO: Parseada linea [2] con timestamp: 30/Jan/2024:00:17:18 +0100
+[2024-05-17 10:19:57.443354100] PROD DETALLADO: Parseada linea [3] con timestamp: 30/Jan/2024:00:23:10 +0100
+[2024-05-17 10:19:57.446352100] PROD DETALLADO: Parseada linea [4] con timestamp: 30/Jan/2024:00:23:33 +0100
+[2024-05-17 10:19:57.448350500] PROD DETALLADO: Parseada linea [5] con timestamp: 30/Jan/2024:00:23:52 +0100
+[2024-05-17 10:19:57.449350200] PROD DETALLADO: Parseada linea [6] con timestamp: 30/Jan/2024:00:24:14 +0100
+[2024-05-17 10:19:57.450349900] PROD DETALLADO: Parseada linea [7] con timestamp: 30/Jan/2024:00:41:11 +0100
+[2024-05-17 10:19:57.451349000] PROD DETALLADO: Parseada linea [8] con timestamp: 30/Jan/2024:00:41:14 +0100
+[2024-05-17 10:19:57.452348100] PROD DETALLADO: Parseada linea [9] con timestamp: 30/Jan/2024:00:41:32 +0100
+[2024-05-17 10:19:57.453347900] PROD DETALLADO: Parseada linea [10] con timestamp: 30/Jan/2024:00:41:33 +0100
+[2024-05-17 10:19:57.453347900] PROD DETALLADO: Parseada linea [11] con timestamp: 30/Jan/2024:00:41:55 +0100
+[2024-05-17 10:19:57.454346900] PROD DETALLADO: Parseada linea [12] con timestamp: 30/Jan/2024:00:42:14 +0100
+[2024-05-17 10:19:57.454346900] PROD DETALLADO: Parseada linea [13] con timestamp: 30/Jan/2024:00:42:35 +0100
+[2024-05-17 10:19:57.455346700] PROD INFORMACIÓN: Creados [14] objetos del modelo.
+[2024-05-17 10:19:57.573926700] PROD GRAVE: ERROR: Inserción fallida: java.sql.SQLSyntaxErrorException: ORA-00942: la tabla o vista no existe
+
+[2024-05-17 10:21:58.701212700] PROD INFORMACIÓN: LogLevel forzado a [FINE]
+[2024-05-17 10:21:59.400986500] PROD INFORMACIÓN: Conectado a la BBDD.
+[2024-05-17 10:21:59.412976600] PROD INFORMACIÓN: Leidas [14] lineas del fichero.
+[2024-05-17 10:21:59.422971000] PROD DETALLADO: Parseada linea [0] con timestamp: 30/Jan/2024:00:16:59 +0100
+[2024-05-17 10:21:59.425969200] PROD DETALLADO: Parseada linea [1] con timestamp: 30/Jan/2024:00:17:17 +0100
+[2024-05-17 10:21:59.426968500] PROD DETALLADO: Parseada linea [2] con timestamp: 30/Jan/2024:00:17:18 +0100
+[2024-05-17 10:21:59.428967300] PROD DETALLADO: Parseada linea [3] con timestamp: 30/Jan/2024:00:23:10 +0100
+[2024-05-17 10:21:59.431965400] PROD DETALLADO: Parseada linea [4] con timestamp: 30/Jan/2024:00:23:33 +0100
+[2024-05-17 10:21:59.435963600] PROD DETALLADO: Parseada linea [5] con timestamp: 30/Jan/2024:00:23:52 +0100
+[2024-05-17 10:21:59.435963600] PROD DETALLADO: Parseada linea [6] con timestamp: 30/Jan/2024:00:24:14 +0100
+[2024-05-17 10:21:59.437962100] PROD DETALLADO: Parseada linea [7] con timestamp: 30/Jan/2024:00:41:11 +0100
+[2024-05-17 10:21:59.441959600] PROD DETALLADO: Parseada linea [8] con timestamp: 30/Jan/2024:00:41:14 +0100
+[2024-05-17 10:21:59.443957800] PROD DETALLADO: Parseada linea [9] con timestamp: 30/Jan/2024:00:41:32 +0100
+[2024-05-17 10:21:59.444957300] PROD DETALLADO: Parseada linea [10] con timestamp: 30/Jan/2024:00:41:33 +0100
+[2024-05-17 10:21:59.445956600] PROD DETALLADO: Parseada linea [11] con timestamp: 30/Jan/2024:00:41:55 +0100
+[2024-05-17 10:21:59.446956900] PROD DETALLADO: Parseada linea [12] con timestamp: 30/Jan/2024:00:42:14 +0100
+[2024-05-17 10:21:59.447956200] PROD DETALLADO: Parseada linea [13] con timestamp: 30/Jan/2024:00:42:35 +0100
+[2024-05-17 10:21:59.448956000] PROD INFORMACIÓN: Creados [14] objetos del modelo.
+[2024-05-17 10:21:59.593256700] PROD DETALLADO: Insertando linea [0] con timestamp: 30/Jan/2024:00:16:59 +0100
+[2024-05-17 10:21:59.595255300] PROD DETALLADO: Insertando linea [1] con timestamp: 30/Jan/2024:00:17:17 +0100
+[2024-05-17 10:21:59.597254500] PROD DETALLADO: Insertando linea [2] con timestamp: 30/Jan/2024:00:17:18 +0100
+[2024-05-17 10:21:59.600252900] PROD DETALLADO: Insertando linea [3] con timestamp: 30/Jan/2024:00:23:10 +0100
+[2024-05-17 10:21:59.603250700] PROD DETALLADO: Insertando linea [4] con timestamp: 30/Jan/2024:00:23:33 +0100
+[2024-05-17 10:21:59.606249400] PROD DETALLADO: Insertando linea [5] con timestamp: 30/Jan/2024:00:23:52 +0100
+[2024-05-17 10:21:59.608247700] PROD DETALLADO: Insertando linea [6] con timestamp: 30/Jan/2024:00:24:14 +0100
+[2024-05-17 10:21:59.610245800] PROD DETALLADO: Insertando linea [7] con timestamp: 30/Jan/2024:00:41:11 +0100
+[2024-05-17 10:21:59.612244800] PROD DETALLADO: Insertando linea [8] con timestamp: 30/Jan/2024:00:41:14 +0100
+[2024-05-17 10:21:59.613244300] PROD DETALLADO: Insertando linea [9] con timestamp: 30/Jan/2024:00:41:32 +0100
+[2024-05-17 10:21:59.616243300] PROD DETALLADO: Insertando linea [10] con timestamp: 30/Jan/2024:00:41:33 +0100
+[2024-05-17 10:21:59.618241100] PROD DETALLADO: Insertando linea [11] con timestamp: 30/Jan/2024:00:41:55 +0100
+[2024-05-17 10:21:59.619240800] PROD DETALLADO: Insertando linea [12] con timestamp: 30/Jan/2024:00:42:14 +0100
+[2024-05-17 10:21:59.621239900] PROD DETALLADO: Insertando linea [13] con timestamp: 30/Jan/2024:00:42:35 +0100
+[2024-05-17 10:21:59.623238400] PROD INFORMACIÓN: Insertadas [14] filas en BBDD.
