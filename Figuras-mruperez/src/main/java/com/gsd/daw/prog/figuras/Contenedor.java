@@ -16,7 +16,7 @@ public class Contenedor {
         this.ancho = ancho;
         this.alto = alto;
         this.figuras = new ArrayList<>();
-        this.svg = "<svg width=\"" + ancho + "\" height=\"" + alto + "\" xmlns=\"http://www.w3.org/2000/svg\" style=\"border:1px solid black;\">";
+        this.svg = "<svg width=\"" + this.ancho + "\" height=\"" + this.alto + "\" xmlns=\"http://www.w3.org/2000/svg\" style=\"border:1px solid black;\">";
     }
 
     public void addCirculo(Circulo figura) {
