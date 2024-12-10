@@ -16,7 +16,7 @@ public class Contenedor {
         this.ancho = ancho;
         this.alto = alto;
         this.figuras = new ArrayList<>();
-        this.svg = "<svg width=\"" + ancho + "\" height=\"" + alto + "\" xmlns=\"http://www.w3.org/2000/svg\">\n";
+        this.svg = "<svg width=\"" + ancho + "\" height=\"" + alto + "\" xmlns=\"http://www.w3.org/2000/svg\" style=\"border:1px solid black;\">";
     }
 
     public void addCirculo(Circulo figura) {
@@ -24,7 +24,7 @@ public class Contenedor {
             throw new IllegalArgumentException("ERROR: La figura no puede ser nula.");
         }
         figuras.add(figura);
-        this.svg+=figura.toSvg()+"\n";
+        this.svg+="\n"+figura.toSvg();
     }
 
     public void addElipse(Elipse figura) {
@@ -32,7 +32,7 @@ public class Contenedor {
             throw new IllegalArgumentException("ERROR: La figura no puede ser nula.");
         }
         figuras.add(figura);
-        this.svg+=figura.toSvg()+"\n";
+        this.svg+="\n"+figura.toSvg();
     }
 
     public void addLinea(Linea figura) {
@@ -40,7 +40,7 @@ public class Contenedor {
             throw new IllegalArgumentException("ERROR: La figura no puede ser nula.");
         }
         figuras.add(figura);
-        this.svg+=figura.toSvg()+"\n";
+        this.svg+="\n"+figura.toSvg();
     }
 
     public void addLineaPoligonal(LineaPoligonal figura) {
@@ -48,7 +48,7 @@ public class Contenedor {
             throw new IllegalArgumentException("ERROR: La figura no puede ser nula.");
         }
         figuras.add(figura);
-        this.svg+=figura.toSvg()+"\n";
+        this.svg+="\n"+figura.toSvg();
     }
 
     public void addPoligono(Poligono figura) {
@@ -56,7 +56,7 @@ public class Contenedor {
             throw new IllegalArgumentException("ERROR: La figura no puede ser nula.");
         }
         figuras.add(figura);
-        this.svg+=figura.toSvg()+"\n";
+        this.svg+="\n"+figura.toSvg();
     }
 
     public void addRectangulo(Rectangulo figura) {
@@ -64,7 +64,7 @@ public class Contenedor {
             throw new IllegalArgumentException("ERROR: La figura no puede ser nula.");
         }
         figuras.add(figura);
-        this.svg+=figura.toSvg()+"\n";
+        this.svg+="\n"+figura.toSvg();
     }
 
     public String toSvg() {
