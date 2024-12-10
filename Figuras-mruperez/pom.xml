@@ -5,11 +5,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.gsd.daw.prog.lantolin</groupId>
-	<artifactId>ProyectoBase</artifactId>
+	<groupId>com.gsd.daw.prog.mruperez</groupId>
+	<artifactId>Figuras</artifactId>
 	<version>1.0</version>
 
-	<name>Proyecto Base</name>
+	<name>Figuras</name>
 	<url>http://www.example.com</url>
 
 	<properties>
@@ -271,24 +271,6 @@
 						</reports>
 					</reportSet>
 				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.6.3</version>
-				<reportSets>
-					<reportSet>
-						<id>default</id>
-						<reports>
-							<report>javadoc</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>3.2.5</version>
 			</plugin>
 		</plugins>
 	</reporting>
