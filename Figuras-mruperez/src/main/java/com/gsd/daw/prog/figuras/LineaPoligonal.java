@@ -4,7 +4,10 @@ public class LineaPoligonal {
 	private Punto[] puntos;
 	private Stroke stroke;
 
-	public LineaPoligonal(Punto[] puntos) {
+	public LineaPoligonal(Punto[] puntos) throws IllegalArgumentException{
+	    if (puntos == null || puntos.length == 0) {
+	        throw new IllegalArgumentException("ERROR: El array de puntos no puede estar vacío.");
+	    }
 		this.puntos = puntos;
 		this.stroke = new Stroke(new Color((byte)0,(byte)0,(byte)0),1);
 	}
