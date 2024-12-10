@@ -5,7 +5,7 @@ import com.gsd.daw.prog.figuras.*;
 public class App {
 
 	public static void main(String[] args) {
-		Circulo p = new Circulo(new Punto(6,7),12);
+		Linea p = new Linea(new Punto(6,1),new Punto(40,37));
 		
 		System.out.println(p.toSvg());
 		
