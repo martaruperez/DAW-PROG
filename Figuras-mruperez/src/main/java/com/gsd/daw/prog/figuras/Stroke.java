@@ -15,19 +15,9 @@ public class Stroke {
 		this.color = color;
 		this.width = width;
 	}
-	
-	public Color getColor() {
-		return color;
-	}
 
-	public int getWidth() {
-		return width;
+	public String toSvg() {
+		return "stroke=\"" + this.color.toSvg()+"\" stroke-width=\""+String.valueOf(this.width)+"\" fill=\"none\"";
 	}
-
-//	public String toSvg() {
-//		//TODO: completar
-//		return " <svg viewBox=\"0 0 1024 768\" xmlns=\"http://www.w3.org/2000/svg\">"
-//				+" </svg>";
-//	}
 	
 }

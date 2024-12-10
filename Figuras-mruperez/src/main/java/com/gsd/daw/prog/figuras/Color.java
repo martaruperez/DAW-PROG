@@ -1,24 +1,21 @@
 package com.gsd.daw.prog.figuras;
 
 public class Color {
-	private Byte red;
-	private Byte green;
-	private Byte blue;
+	private byte red;
+	private byte green;
+	private byte blue;
 	
-	Color(Byte red, Byte green, Byte blue)throws IllegalArgumentException{
+	public Color(Byte red, Byte green, Byte blue)throws IllegalArgumentException{
 		if(null == red || null == green || null == blue) {
 			throw new IllegalArgumentException("ERROR: Los argumentos no pueden ser valores nulos");
 		}
-		if(null == red || null == green || null == blue) {
-			throw new IllegalArgumentException("ERROR: Los argumentos no pueden ser valores nulos");
-		}
-		
-		this.blue = blue;
-		this.red = red;
-		this.green = green; 
+		this.blue = blue ;
+		this.red = red ;
+		this.green = green ; 
 	}
 	
 	public String toSvg() {
-		return "";
+		//El valor del Byte se usa como Unsigned
+		return "rgb("+ String.valueOf(Byte.toUnsignedInt(this.red))+","+ String.valueOf(Byte.toUnsignedInt(this.green))+","+ String.valueOf(Byte.toUnsignedInt(this.blue))+")";
 	}
 }

@@ -9,5 +9,7 @@ public class Circulo {
 		this.radio = radio;
 	}
 	
-	//TODO: completar clase
+	public String toSvg() {
+		return "";
+	}
 }
