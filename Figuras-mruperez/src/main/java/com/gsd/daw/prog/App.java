@@ -5,7 +5,7 @@ import com.gsd.daw.prog.figuras.*;
 public class App {
 
 	public static void main(String[] args) {
-		Rectangulo p = new Rectangulo(new Punto(6,1),1,37);
+		Elipse p = new Elipse(new Punto(6,1),1,37);
 		
 		System.out.println(p.toSvg());
 		
