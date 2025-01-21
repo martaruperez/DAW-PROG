@@ -2,11 +2,11 @@ package com.gsd.daw.prog.figuras;
 
 public class Rectangulo {
 	private Punto origen;
-	private int ancho;
-	private int alto;
+	private Integer ancho;
+	private Integer alto;
 	private Stroke stroke;
 	
-	public Rectangulo(Punto origen, int ancho, int alto) {
+	public Rectangulo(Punto origen, Integer ancho, Integer alto) {
 		this.origen = origen;
 		this.ancho = ancho;
 		this.alto = alto;

@@ -3,10 +3,13 @@ package com.gsd.daw.prog.figuras;
 public class Elipse {
 	private Stroke stroke;
 	private Punto centro;
-	private int radio1;
-	private int radio2;
+	private Integer radio1;
+	private Integer radio2;
 	
-	public Elipse(Punto centro, int radio1, int radio2) {
+	public Elipse(Punto centro, Integer radio1, Integer radio2) throws IllegalArgumentException{
+		if(null==centro || null==radio1||null==radio2) {
+			throw new IllegalArgumentException("ERROR: No se admiten valores nulos");
+		}
 		this.centro = centro;
 		this.radio1 = radio1;
 		this.radio2 = radio2;

@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Contenedor {
-    private int ancho;
-    private int alto;
+    private Integer ancho;
+    private Integer alto;
     private List<Object> figuras;
     private String svg;
 
-    public Contenedor(int ancho, int alto) {
+    public Contenedor(Integer ancho, Integer alto) {
         if (ancho == 0 || alto == 0) {
             throw new IllegalArgumentException("ERROR: El ancho y el alto no pueden ser nulos.");
         }
