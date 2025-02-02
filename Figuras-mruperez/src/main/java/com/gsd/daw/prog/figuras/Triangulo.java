@@ -12,6 +12,7 @@ public class Triangulo {
 			throw new IllegalArgumentException("ERROR: Ningún punto puede tener un valor nulo");
 		}
 		this.stroke = new Stroke(new Color((byte)0,(byte)0,(byte)0),1);
+		this.puntos = puntos;
 	}
 
 	public void setStroke(Stroke stroke) throws IllegalArgumentException{
