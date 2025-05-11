@@ -6,7 +6,7 @@
 
 	<!-- IMPORTANTE: al usar este POM en tus proyectos tienes que poner -->
 	<!-- como artifactId NombreOficialDelProyecto-id1 -->
-		<artifactId>ApacheLogDataMining-mruperez</artifactId>
+  		<artifactId>ApacheLogDataMining-mruperez</artifactId>
 	<name>Proyecto Base</name>
 	<parent>
 		<groupId>com.gsd.daw.prog</groupId>
