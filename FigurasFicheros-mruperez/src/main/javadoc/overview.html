@@ -1,0 +1,41 @@
+<HTML>
+
+<BODY>
+	Hello world! Proyecto para ser usado como base para un proyecto Java, puede ser usado como proyecto de tipo
+	ejecutable o como proyecto de tipo librería/API
+	<p>
+		Características del proyecto Maven:
+	<ul>
+		<li>Maven, minimo requerido 3.6.3</li>
+		<li>Java 17</li>
+		<li>JUnit 5</li>
+		<li>Checkstyle se ejecuta como reporte Maven si encuentra un fichero de configuración checkstlyle en
+			<code>etc/daw_checks.xml</code>
+		</li>
+		<li>JaCoCo</li>
+		<li>Generación de Javadoc como JAR independiente</li>
+		<li>Generación de Javadoc como reporte Maven, con UMLdoclet</li>
+		<li>Reportes surefire/JUnit mejorados para usar <code>@DisplayName</code> tanto en consola como en XML</li>
+		<li>Clase <code>main</code> preconfigurada a <code>com.gsd.daw.prog.App</code></li>
+	</ul>
+	<p>
+		Para usarlo tienes que cambiar <code>lantolin</code> por tu <code>id1</code> en:
+	<ul>
+		<li>
+			El nombre de proyecto Eclipse, si el proyecto aun no está en Git esto cambiará también el nombre del
+			directorio base del proyecto.
+		</li>
+		<li>El <code>groupId</code> del <code>pom.xml</code>
+		</li>
+	</ul>
+
+	<p>Para proyectos de tipo ejecutable, el proyecto se puede ejecutar de dos modos:
+
+	<p><code>mvn exec:java -Dexec.mainClass=com.gsd.daw.prog.App -Dexec.args="arg1 arg2 ..."</code>
+	<p><code>java -jar target/ProyectoBase-1.0.jar argumento1 argumento2 ...</code>
+		@since 1.0
+		@version 1.0
+		@author Luis Antolín
+</BODY>
+
+</HTML>
