@@ -4,10 +4,11 @@ import com.gsd.daw.prog.lenguaje.*;
 
 public class App {
 
-	public static void main(String[] args) throws IllegalArgumentException{
+	public static void main(String[] args) {
 		
 		if(args.length < 2) {
-			throw new IllegalArgumentException("ERROR: No ha introducido suficientes argumentos.");
+			System.out.println("ERROR: No ha introducido suficientes argumentos.");
+			return;
 		}
 		if(args.length > 2) {
 			return;

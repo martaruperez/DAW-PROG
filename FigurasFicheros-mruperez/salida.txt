@@ -1,0 +1,8 @@
+<svg width="500" height="400" xmlns="http://www.w3.org/2000/svg" style="border:1px solid black;">
+<circle cx="100" cy="100" r="50" stroke="rgb(0,0,0)" stroke-width="1" fill="none"/>
+<rect x="200" y="200" width="150" height="100" stroke="rgb(255,0,0)" stroke-width="5" fill="none"/>
+<line x1="50" x2="150" y1="50" y2="150" stroke="rgb(255,0,0)" stroke-width="5" fill="none"/>
+<ellipse cx="300" cy="200" rx="80" ry="60" stroke="rgb(255,0,0)" stroke-width="5" fill="none"/>
+<polyline points="10,10 50,50 100,100" stroke="rgb(0,0,0)" stroke-width="1" fill="none"/>
+<polygon points="400,100 450,150 475,200 400,250 350,200" stroke="rgb(255,0,0)" stroke-width="5" fill="none"/>
+</svg>
