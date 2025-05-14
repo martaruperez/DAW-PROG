@@ -9,7 +9,7 @@ public class Contenedor {
     private List<Object> figuras;
     private String svg;
 
-    public Contenedor(Integer ancho, Integer alto) {
+    public Contenedor(Integer ancho, Integer alto) throws IllegalArgumentException{
         if (ancho == 0 || alto == 0) {
             throw new IllegalArgumentException("ERROR: El ancho y el alto no pueden ser nulos.");
         }

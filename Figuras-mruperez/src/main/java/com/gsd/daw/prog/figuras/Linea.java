@@ -5,7 +5,11 @@ public class Linea {
 	private Punto punto2;
 	private Stroke stroke;
 	
-	public Linea(Punto punto1, Punto punto2) {
+	public Linea(Punto punto1, Punto punto2) throws IllegalArgumentException{
+		if(null==punto1 || null==punto2) {
+			throw new IllegalArgumentException("ERROR: No se admiten valores nulos");
+		}
+		
 		this.punto1 = punto1;
 		this.punto2 = punto2;
 		this.stroke = new Stroke(new Color((byte)0,(byte)0,(byte)0),1);

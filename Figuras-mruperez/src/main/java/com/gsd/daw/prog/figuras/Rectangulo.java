@@ -6,7 +6,10 @@ public class Rectangulo {
 	private Integer alto;
 	private Stroke stroke;
 	
-	public Rectangulo(Punto origen, Integer ancho, Integer alto) {
+	public Rectangulo(Punto origen, Integer ancho, Integer alto) throws IllegalArgumentException{
+		if(null==origen || null==ancho||null==alto) {
+			throw new IllegalArgumentException("ERROR: No se admiten valores nulos");
+		}
 		this.origen = origen;
 		this.ancho = ancho;
 		this.alto = alto;
