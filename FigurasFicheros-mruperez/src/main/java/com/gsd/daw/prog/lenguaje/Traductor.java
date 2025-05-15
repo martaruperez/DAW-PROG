@@ -3,6 +3,7 @@ package com.gsd.daw.prog.lenguaje;
 import com.gsd.daw.prog.figuras.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.io.BufferedWriter;
@@ -45,7 +46,7 @@ public class Traductor {
         // Si una figura usa un Stroke, este debe estar definido antes de la figura       
         // Todos los números serán números enteros
         // Los Puntos se expresan como coordenadaX,coordenadaY
-        java.util.Map<String, Stroke> strokes = new java.util.HashMap<String, Stroke>();
+        Map<String, Stroke> strokes = new HashMap<String, Stroke>();
         for (int i = 1; i < contenido.length; i++) {
             String linea = contenido[i];
             if (!procesarLineaFigura(linea, i + 1, strokes)) {
