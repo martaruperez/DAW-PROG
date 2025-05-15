@@ -26,6 +26,6 @@ public class Triangulo {
 		return "<polygon points=\""+this.puntos[0].getX()+"," + this.puntos[0].getY() +" "
                 + this.puntos[1].getX() + "," + this.puntos[1].getY() + " "
                 + this.puntos[2].getX() + "," + this.puntos[2].getY() +"\" "
-                + this.stroke.toSvg()+" />";
+                + this.stroke.toSvg()+ "\"/>";
 	}
 }

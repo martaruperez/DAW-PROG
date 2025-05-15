@@ -12,11 +12,11 @@ public class Punto {
 		this.y = y;
 	}
 
-	public int getX() {
+	public Integer getX() {
 		return x;
 	}
 
-	public int getY() {
+	public Integer getY() {
 		return y;
 	}
 	

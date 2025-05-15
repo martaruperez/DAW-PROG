@@ -10,7 +10,7 @@ public class Contenedor {
     private String svg;
 
     public Contenedor(Integer ancho, Integer alto) throws IllegalArgumentException{
-        if (ancho == 0 || alto == 0) {
+        if (ancho == null || alto == null) {
             throw new IllegalArgumentException("ERROR: El ancho y el alto no pueden ser nulos.");
         }
         this.ancho = ancho;
