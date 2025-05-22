@@ -21,107 +21,94 @@ public class Traductor {
 	}
 	
 	private boolean validar() {
-        File f = new File(this.rutaEntrada);
-        try {
-            Scanner s = new Scanner(f); 
-            s.close();                  
-        } catch (FileNotFoundException e) {
-            System.out.println("ERROR: No se puede leer el fichero de entrada [" + this.rutaEntrada + "]\n" + e.getMessage());
-            return false;
-        }
-		
-        // El fichero debe tener un solo contenedor, el contenedor estará en la 1a línea, 
-        // todas las figuras pertenecen al contenedor
-        String[] contenido = leerEntrada(f).split("---");
+	    File f = new File(this.rutaEntrada);
+	    if (!f.exists() || !f.isFile()) {
+	        System.out.println("ERROR: No se puede leer el fichero de entrada [" + this.rutaEntrada + "]");
+	        return false;
+	    }
 
-        if (contenido.length == 0) {
-            System.out.println("ERROR: El fichero de entrada está vacío");
-            return false;
-        }
-        
-        if (!validarContenedor(contenido[0])) {
-            return false;
-        }
-        
-        // Si una figura usa un Stroke, este debe estar definido antes de la figura       
-        // Todos los números serán números enteros
-        // Los Puntos se expresan como coordenadaX,coordenadaY
-        Map<String, Stroke> strokes = new HashMap<String, Stroke>();
-        for (int i = 1; i < contenido.length; i++) {
-            String linea = contenido[i];
-            if (!procesarLineaFigura(linea, i + 1, strokes)) {
-                return false;
-            }
-        }
+	    String contenidoFichero = leerEntrada(f).trim();
+	    if (contenidoFichero.isEmpty()) {
+	        System.out.println("ERROR: El fichero de entrada está vacío");
+	        return false;
+	    }
 
-        return true;
+	    String[] lineas = contenidoFichero.split("---");
+	    if (!validarContenedor(lineas[0])) return false;
 
+	    Map<String, Stroke> strokes = new HashMap<>();
+	    for (int i = 1; i < lineas.length; i++) {
+	        if (lineas[i].trim().isEmpty()) {
+	            System.out.println("ERROR: Línea [" + (i + 1) + "] vacía");
+	            return false;
+	        }
+	        if (!procesarLineaFigura(lineas[i], i + 1, strokes)) return false;
+	    }
+
+	    return true;
 	}
+
 	
 	private boolean procesarLineaFigura(String linea, int numeroLinea, Map<String, Stroke> strokes) {
 	    String[] partes = linea.split(" ");
 	    if (partes.length == 0) {
-	        System.out.println("ERROR: Línea [" + numeroLinea + "] línea vacía");
+	        System.out.println("ERROR: Línea [" + numeroLinea + "] vacía");
 	        return false;
 	    }
 
 	    String tipo = partes[0];
 
-	    if (tipo.equals("ST")) {
-	        if (partes.length != 6) {
-	            System.out.println("ERROR: Línea [" + numeroLinea + "] formato incorrecto para Stroke");
+	    if (tipo.equals("ST")) return procesarStroke(partes, numeroLinea, strokes);
+
+	    Stroke stroke = null;
+	    if (!(tipo.equals("LP") || tipo.equals("PO")) && partes.length > 1) {
+	        String posibleStroke = partes[partes.length - 1];
+	        if (strokes.containsKey(posibleStroke)) {
+	            stroke = strokes.get(posibleStroke);
+	        } else if (!esNumero(posibleStroke) && !esCoordenadaValida(posibleStroke)) {
+	            System.out.println("ERROR: Línea [" + numeroLinea + "] usa un Stroke no definido: [" + posibleStroke + "]");
 	            return false;
 	        }
+	    }
 
-	        String nombre = partes[1];
-	        if (!esNumero(partes[2]) || !esNumero(partes[3]) || !esNumero(partes[4]) || !esNumero(partes[5])) {
+	    switch (tipo) {
+	        case "CI": return procesarCirculo(partes, numeroLinea, stroke);
+	        case "RE": return procesarRectangulo(partes, numeroLinea, stroke);
+	        case "LI": return procesarLinea(partes, numeroLinea, stroke);
+	        case "EL": return procesarElipse(partes, numeroLinea, stroke);
+	        case "LP":
+	        case "PO": return procesarPoligono(partes, numeroLinea, tipo, strokes);
+	        default:
+	            System.out.println("ERROR Línea [" + numeroLinea + "] tipo de figura desconocido [" + tipo + "]");
+	            return false;
+	    }
+	}
+
+	
+	private boolean procesarStroke(String[] partes, int numeroLinea, Map<String, Stroke> strokes) {
+	    if (partes.length != 6) {
+	        System.out.println("ERROR: Línea [" + numeroLinea + "] formato incorrecto para Stroke");
+	        return false;
+	    }
+
+	    String nombre = partes[1];
+	    for (int i = 2; i <= 5; i++) {
+	        if (!esNumero(partes[i])) {
 	            System.out.println("ERROR: Línea [" + numeroLinea + "] los valores deben ser números");
 	            return false;
 	        }
-
-	        int r = Integer.parseInt(partes[2]);
-	        int g = Integer.parseInt(partes[3]);
-	        int b = Integer.parseInt(partes[4]);
-	        int ancho = Integer.parseInt(partes[5]);
-	        Stroke stroke = new Stroke(new Color((byte) r, (byte) g, (byte) b), ancho);
-	        strokes.put(nombre, stroke);
-	        return true;
 	    }
 
-	    Stroke stroke = strokes.get(partes[partes.length - 1]);
-	    if (stroke == null && !tipo.equals("ST")) {
-	        stroke = null;
-	    }
-
-	    try {
-	        if (tipo.equals("CI")) {
-	            return procesarCirculo(partes, numeroLinea, stroke);
-	        }
-
-	        if (tipo.equals("RE")) {
-	            return procesarRectangulo(partes, numeroLinea, stroke);
-	        }
-
-	        if (tipo.equals("LI")) {
-	            return procesarLinea(partes, numeroLinea, stroke);
-	        }
-
-	        if (tipo.equals("EL")) {
-	            return procesarElipse(partes, numeroLinea, stroke);
-	        }
-
-	        if (tipo.equals("LP") || tipo.equals("PO")) {
-	            return procesarPoligono(partes, numeroLinea, stroke, tipo);
-	        }
-
-	        System.out.println("ERROR Línea [" + numeroLinea + "] tipo de figura desconocido [" + tipo + "]");
-	        return false;
-
-	    } catch (Exception e) {
-	        System.out.println("ERROR Línea [" + numeroLinea + "] formato inválido o datos incorrectos");
-	        return false;
-	    }
+	    int r = Integer.parseInt(partes[2]);
+	    int g = Integer.parseInt(partes[3]);
+	    int b = Integer.parseInt(partes[4]);
+	    int ancho = Integer.parseInt(partes[5]);
+	    Stroke stroke = new Stroke(new Color((byte) r, (byte) g, (byte) b), ancho);
+	    strokes.put(nombre, stroke);
+	    return true;
 	}
+
+	
 
 	private boolean procesarCirculo(String[] partes, int numeroLinea, Stroke stroke) {
 	    if ((stroke == null && partes.length != 3) || (stroke != null && partes.length != 4)) {
@@ -231,34 +218,55 @@ public class Traductor {
 	    return true;
 	}
 
-	private boolean procesarPoligono(String[] partes, int numeroLinea, Stroke stroke, String tipo) {
+	private boolean esCoordenadaValida(String s) {
+	    String[] xy = s.split(",");
+	    return xy.length == 2 && esNumero(xy[0]) && esNumero(xy[1]);
+	}
+
+	
+	private boolean procesarPoligono(String[] partes, int numeroLinea, String tipo, Map<String, Stroke> strokes) {
 	    if (partes.length < 3) {
 	        System.out.println("ERROR: Línea [" + numeroLinea + "] formato incorrecto para Polígono");
 	        return false;
 	    }
 
-	    int totalPuntos = partes.length - 2;
+	    String posibleUltimo = partes[partes.length - 1];
+	    Stroke stroke = null;
+	    int totalPuntos = partes.length - 1; // Por defecto, todos son puntos
+
+	    if (strokes.containsKey(posibleUltimo)) {
+	        stroke = strokes.get(posibleUltimo);
+	        totalPuntos--; // El último no es punto, es un nombre de stroke
+	    }
+
+	    if (totalPuntos < 2) {
+	        System.out.println("ERROR: Línea [" + numeroLinea + "] no hay suficientes puntos");
+	        return false;
+	    }
+
 	    Punto[] puntos = new Punto[totalPuntos];
-	    for (int i = 1; i <= totalPuntos; i++) {
-	        String[] xy = partes[i].split(",");
+	    for (int i = 0; i < totalPuntos; i++) {
+	        String[] xy = partes[i + 1].split(",");
 	        if (xy.length != 2 || !esNumero(xy[0]) || !esNumero(xy[1])) {
-	            System.out.println("ERROR: Línea [" + numeroLinea + "] coordenadas de los puntos incorrectas");
+	            System.out.println("ERROR: Línea [" + numeroLinea + "] coordenadas incorrectas en el punto [" + partes[i + 1] + "]");
 	            return false;
 	        }
-	        puntos[i - 1] = new Punto(Integer.parseInt(xy[0]), Integer.parseInt(xy[1]));
+	        puntos[i] = new Punto(Integer.parseInt(xy[0]), Integer.parseInt(xy[1]));
 	    }
 
 	    if (tipo.equals("LP")) {
 	        LineaPoligonal lp = new LineaPoligonal(puntos);
-	        if(stroke!=null)lp.setStroke(stroke);
+	        if (stroke != null) lp.setStroke(stroke);
 	        figuras.addLineaPoligonal(lp);
 	    } else {
 	        Poligono po = new Poligono(puntos);
-	        if(stroke!=null)po.setStroke(stroke);
+	        if (stroke != null) po.setStroke(stroke);
 	        figuras.addPoligono(po);
 	    }
+
 	    return true;
 	}
+
 
 	
 	private boolean validarContenedor(String linea) {
@@ -298,17 +306,17 @@ public class Traductor {
 	
 	private String leerEntrada(File f) {
 		String s = "";
-		Scanner inputScannerFromFile = null;
+		Scanner input = null;
 		try {
-			inputScannerFromFile = new Scanner(f);
+			input = new Scanner(f);
 		} catch (FileNotFoundException e) {
 
 		}
-		while (inputScannerFromFile.hasNext()) {
-			String line = inputScannerFromFile.nextLine();
+		while (input.hasNext()) {
+			String line = input.nextLine();
 			s+=line+"---";
 		}
-		inputScannerFromFile.close();
+		input.close();
 		
 		return s;
 	}
