@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Calculos.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Proyecto Base</a> &gt; <a href="index.source.html" class="el_package">com.gsd.daw.prog</a> &gt; <span class="el_source">Calculos.java</span></div><h1>Calculos.java</h1><pre class="source lang-java linenums">package com.gsd.daw.prog;
+import java.util.HashMap;
+import java.util.Map;
+
+<span class="nc" id="L5">public class Calculos {</span>
+	public static String calcularIpsRepetidasMasDeDiezVeces(Log[] logs) {
+<span class="nc" id="L7">		Map &lt;String, Integer&gt; ipRepeticiones = new HashMap&lt;&gt;();</span>
+		
+<span class="nc bnc" id="L9" title="All 2 branches missed.">		for (int i = 0; i &lt; logs.length; i++) {</span>
+<span class="nc bnc" id="L10" title="All 2 branches missed.">			if(ipRepeticiones.containsKey(logs[i].getIp())) {</span>
+<span class="nc" id="L11">				int valorAnterior = ipRepeticiones.get(logs[i].getIp());</span>
+<span class="nc" id="L12">				ipRepeticiones.replace(logs[i].getIp(), valorAnterior, valorAnterior+1);</span>
+<span class="nc" id="L13">			}</span>
+			else {
+<span class="nc" id="L15">				ipRepeticiones.put(logs[i].getIp(), 1);</span>
+			}
+		}
+		
+<span class="nc" id="L19">		String s = &quot;Listado de las IPs que aparecen diez o más veces: \n&quot;;</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">		for (Map.Entry&lt;String, Integer&gt; entry : ipRepeticiones.entrySet()) {</span>
+<span class="nc bnc" id="L21" title="All 2 branches missed.">			if(entry.getValue() &gt;= 10) {</span>
+<span class="nc" id="L22">				s += entry.getKey()+&quot;:  &quot;+entry.getValue()+&quot;\n&quot;;</span>
+			}
+<span class="nc" id="L24">		}</span>
+<span class="nc" id="L25">		return s;</span>
+	}
+	
+	public static String contarStatusCode(Log[] logs) {
+<span class="nc" id="L29">		Map &lt;Integer, Integer&gt; statusCodes = new HashMap&lt;&gt;();</span>
+		
+<span class="nc bnc" id="L31" title="All 2 branches missed.">		for (int i = 0; i &lt; logs.length; i++) {</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">			if(statusCodes.containsKey(logs[i].getResult())) {</span>
+<span class="nc" id="L33">				int valorAnterior = statusCodes.get(logs[i].getResult());</span>
+<span class="nc" id="L34">				statusCodes.replace(logs[i].getResult(), valorAnterior, valorAnterior+1);</span>
+<span class="nc" id="L35">			}</span>
+			else {
+<span class="nc" id="L37">				statusCodes.put(logs[i].getResult(), 1);</span>
+			}
+		}
+<span class="nc" id="L40">		String s = &quot;Número de veces que se aparece cada Status Code: \n&quot;;</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">		for (Map.Entry&lt;Integer, Integer&gt; entry : statusCodes.entrySet()) {</span>
+			//s += status+ &quot; : &quot; + vecesRepetido
+<span class="nc" id="L43">		    s+= entry.getKey() + &quot; : &quot; + entry.getValue()+&quot;\n&quot;;</span>
+<span class="nc" id="L44">		}</span>
+<span class="nc" id="L45">		return s;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

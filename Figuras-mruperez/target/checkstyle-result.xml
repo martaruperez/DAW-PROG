@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="9.3">
+<file name="C:\Users\marta\git\1DAW-PROG\Figuras-mruperez\src\main\java\com\gsd\daw\prog\App.java">
+<error line="3" column="32" severity="warning" message="Usar la importación con &apos;.*&apos; debería evitarse - com.gsd.daw.prog.figuras.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+<error line="8" column="49" severity="warning" message="&apos;6&apos; es un número mágico." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="8" column="56" severity="warning" message="&apos;37&apos; es un número mágico." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="10" column="56" severity="warning" message="&apos;45&apos; es un número mágico." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="10" column="73" severity="warning" message="&apos;68&apos; es un número mágico." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="10" column="77" severity="warning" message="&apos;20&apos; es un número mágico." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="12" column="47" severity="warning" message="&apos;999&apos; es un número mágico." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+<error line="12" column="52" severity="warning" message="&apos;999&apos; es un número mágico." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+</file>
+<file name="C:\Users\marta\git\1DAW-PROG\Figuras-mruperez\src\main\java\com\gsd\daw\prog\figuras\Triangulo.java">
+</file>
+</checkstyle>

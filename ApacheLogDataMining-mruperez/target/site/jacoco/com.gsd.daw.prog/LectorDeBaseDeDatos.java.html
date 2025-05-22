@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LectorDeBaseDeDatos.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Proyecto Base</a> &gt; <a href="index.source.html" class="el_package">com.gsd.daw.prog</a> &gt; <span class="el_source">LectorDeBaseDeDatos.java</span></div><h1>LectorDeBaseDeDatos.java</h1><pre class="source lang-java linenums">package com.gsd.daw.prog;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class LectorDeBaseDeDatos {
+	private static final int TAMANIO_MAXIMO=10000; 
+	private static final int COLUMNAS=6; 
+	private Connection conn;
+<span class="nc" id="L13">	public LectorDeBaseDeDatos(Connection conexion) {</span>
+<span class="nc" id="L14">		this.conn = conexion;</span>
+		
+<span class="nc" id="L16">	}</span>
+	
+    public String[][] extraerTabla( ) throws Exception {
+    	
+<span class="nc" id="L20">        Statement stmt = this.conn.createStatement();</span>
+<span class="nc" id="L21">        ResultSet resultSet = stmt.executeQuery( &quot;SELECT * FROM apache_log_tbl&quot; );</span>
+<span class="nc" id="L22">        String[][] resultadoConsulta = new String [TAMANIO_MAXIMO][6];</span>
+        
+<span class="nc" id="L24">        int i = 0;</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        while ( resultSet.next() ) {</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        	if(!(i &lt; TAMANIO_MAXIMO)) {</span>
+<span class="nc" id="L27">        		throw new Exception((&quot;ERROR: La tabla es demasiado grande, tamaño maximo: &quot;+TAMANIO_MAXIMO));</span>
+        	}
+            try {
+<span class="nc" id="L30">            	resultadoConsulta[i][0] = resultSet.getString( &quot;IP&quot; ) ;</span>
+<span class="nc" id="L31">            	resultadoConsulta[i][1] = resultSet.getString( &quot;timestamp&quot; ) ;</span>
+<span class="nc" id="L32">            	resultadoConsulta[i][2] = resultSet.getString( &quot;request&quot; ) ;</span>
+<span class="nc" id="L33">            	resultadoConsulta[i][3] = resultSet.getString( &quot;result&quot; ) ;</span>
+<span class="nc" id="L34">            	resultadoConsulta[i][4] = resultSet.getString( &quot;bytes&quot; ) ;</span>
+<span class="nc" id="L35">            	resultadoConsulta[i][5] = resultSet.getString( &quot;ua&quot; ) ;</span>
+            } 
+<span class="nc" id="L37">            catch(NumberFormatException e) {</span>
+
+<span class="nc" id="L39">            }</span>
+<span class="nc" id="L40">            i++;</span>
+        }
+<span class="nc" id="L42">        resultSet.close();</span>
+<span class="nc" id="L43">        stmt.close();</span>
+<span class="nc" id="L44">        conn.close();</span>
+        
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if( resultadoConsulta.length == i ) {return resultadoConsulta;}</span>
+        
+<span class="nc" id="L48">        String[][] aux = new String[i][6];</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        for (int j = 0; j &lt; i; j++) {</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            for (int k = 0; k &lt; 6; k++) {</span>
+<span class="nc" id="L51">                aux[j][k] = resultadoConsulta[j][k];</span>
+            }
+        }
+<span class="nc" id="L54">        return aux;</span>
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

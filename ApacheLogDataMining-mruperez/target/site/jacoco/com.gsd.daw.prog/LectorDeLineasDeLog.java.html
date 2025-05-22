@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LectorDeLineasDeLog.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Proyecto Base</a> &gt; <a href="index.source.html" class="el_package">com.gsd.daw.prog</a> &gt; <span class="el_source">LectorDeLineasDeLog.java</span></div><h1>LectorDeLineasDeLog.java</h1><pre class="source lang-java linenums">
+package com.gsd.daw.prog;
+
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+public class LectorDeLineasDeLog {
+	private String rutaFichero;
+	private String[] lineas;
+	private final static int TAMANIO_MAXIMO=10000;
+	
+<span class="nc" id="L15">	public LectorDeLineasDeLog(String rutaFichero) throws Exception {</span>
+<span class="nc" id="L16">		this.rutaFichero = rutaFichero;</span>
+		try {
+<span class="nc" id="L18">			this.lineas = extraerLineasDeLogs();</span>
+		}
+<span class="nc" id="L20">		catch(Exception e) {</span>
+<span class="nc" id="L21">			throw(e);</span>
+<span class="nc" id="L22">		}</span>
+		
+<span class="nc" id="L24">	}</span>
+	
+	public String[][] obtenerColumnasDeLogs(){
+
+<span class="nc" id="L28">		    String[][] logs = new String[this.lineas.length][6];</span>
+<span class="nc" id="L29">		    int count = 0;</span>
+
+<span class="nc bnc" id="L31" title="All 2 branches missed.">		    for (int i = 0; i &lt; this.lineas.length; i++) {</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">		        if (this.lineas[i] != null) {</span>
+<span class="nc" id="L33">		            String[] columnas = splitearLineaLog(this.lineas[i]);</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">		            if (columnas[0] != null) {</span>
+<span class="nc" id="L35">		                logs[count] = columnas;</span>
+<span class="nc" id="L36">		                count++;</span>
+		            }
+		        }
+		    }
+
+<span class="nc" id="L41">		    String[][] resultado = new String[count][6];</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">		    for (int i = 0; i &lt; count; i++) {</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">		        for (int j = 0; j &lt; 6; j++) {</span>
+<span class="nc" id="L44">		            resultado[i][j] = logs[i][j];</span>
+		        }
+		    }
+
+<span class="nc" id="L48">		    return resultado;</span>
+
+	}
+	
+	private String[] extraerLineasDeLogs() throws FileNotFoundException, Exception { 
+<span class="nc" id="L53">			File fichero = new File(this.rutaFichero);</span>
+			
+<span class="nc bnc" id="L55" title="All 2 branches missed.">			if(!fichero.isFile()) {</span>
+<span class="nc" id="L56">				throw new FileNotFoundException(&quot;ERROR: La ruta del fichero no corresponde &quot;</span>
+						+ &quot;a ningun fichero existente.&quot;);
+			}
+<span class="nc bnc" id="L59" title="All 2 branches missed.">			if(!fichero.canRead()) {</span>
+<span class="nc" id="L60">				throw new FileNotFoundException(&quot;ERROR: No se dispone de privilegios para&quot;</span>
+						+ &quot; leer en el fichero&quot;);
+			}
+<span class="nc bnc" id="L63" title="All 2 branches missed.">			if(!fichero.canWrite()) {</span>
+<span class="nc" id="L64">				throw new FileNotFoundException(&quot;ERROR: No se dispone de privilegios para&quot;</span>
+						+ &quot; escribir en el fichero&quot;);
+			}
+			
+<span class="nc" id="L68">			int cuentaLineas = 0;</span>
+<span class="nc" id="L69">			Scanner reader = null;</span>
+			try {
+<span class="nc" id="L71">				reader = new Scanner(fichero);</span>
+			}
+<span class="nc" id="L73">			catch(FileNotFoundException e) {</span>
+<span class="nc" id="L74">				throw new FileNotFoundException(&quot;ERROR: Fichero no encontrado.&quot;);</span>
+<span class="nc" id="L75">			}</span>
+			
+<span class="nc" id="L77">			String s = &quot;&quot;;</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">			while(reader.hasNext()) {</span>
+<span class="nc" id="L79">				s += reader.nextLine();</span>
+<span class="nc" id="L80">				s += &quot;--partir-por-aqui--&quot;;</span>
+<span class="nc" id="L81">				cuentaLineas++;</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">				if(!(cuentaLineas &lt; TAMANIO_MAXIMO)) {</span>
+<span class="nc" id="L83">					throw new Exception(&quot;ERROR: El fichero supera las 10000 lineas.&quot;);</span>
+				}
+			}
+			
+<span class="nc" id="L87">			String[] infoFichero = new String[cuentaLineas];</span>
+<span class="nc" id="L88">			infoFichero = s.split(&quot;--partir-por-aqui--&quot;);</span>
+			
+<span class="nc" id="L90">			reader.close();</span>
+<span class="nc" id="L91">			return infoFichero;</span>
+	}
+	
+    private static String[] splitearLineaLog( String line ) {
+<span class="nc" id="L95">        String  LOG_ENTRY_PATTERN = &quot;^(\\S+) (\\S+) (\\S+) \\[([\\w:/]+\\s[+\\-]\\d{4})\\] \&quot;(.+?)\&quot; (\\d{3}) (\\S+) \&quot;(.*?)\&quot; \&quot;(.*?)\&quot;$&quot;;</span>
+<span class="nc" id="L96">        Pattern pattern = Pattern.compile( LOG_ENTRY_PATTERN );     </span>
+        
+<span class="nc" id="L98">        String[] res = new String[6];</span>
+<span class="nc" id="L99">        Matcher matcher = pattern.matcher( line );</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if ( matcher.matches() ) {</span>
+<span class="nc" id="L101">            res[0] = matcher.group( 1 );</span>
+<span class="nc" id="L102">            res[1] = matcher.group( 4 );</span>
+<span class="nc" id="L103">            res[2] = matcher.group( 5 );</span>
+<span class="nc" id="L104">            res[3] = matcher.group( 6 );</span>
+<span class="nc" id="L105">            res[4] = matcher.group( 7 );</span>
+<span class="nc" id="L106">            res[5] = matcher.group( 9 );</span>
+        }
+<span class="nc" id="L108">        return res;</span>
+    }
+	
+    public int length() {
+<span class="nc bnc" id="L112" title="All 2 branches missed.">    	if(this.lineas==null) {</span>
+<span class="nc" id="L113">    		return 0;</span>
+    	}
+<span class="nc" id="L115">    	return lineas.length;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,5 @@
+-------------------------------------------------------------------------------
+Test set: daw.prog.ApacheLogDataMining_mruperez.AppTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.078 s -- in daw.prog.ApacheLogDataMining_mruperez.AppTest
+daw.prog.ApacheLogDataMining_mruperez.AppTest.shouldAnswerWithTrue -- Time elapsed: 0.036 s

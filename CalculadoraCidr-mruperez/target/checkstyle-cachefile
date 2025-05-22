@@ -1,0 +1,5 @@
+#Thu May 22 11:45:58 CEST 2025
+configuration*?=1226F71540DFD2D0949335723B9C1AE139CF023B
+module-resource*?\:checkstyle-xpath-suppressions.xml=99D237D971A4A57E63890CE9D50C186B4F706BA1
+module-resource*?\:checkstyle-suppressions.xml=8B5BC16BDB64B73E6FDFCD24CDE83F957AEBB529
+C\:\\Users\\marta\\eclipse-workspace\\CalculadoraCidr-mruperez\\src\\main\\java\\com\\gsd\\daw\\prog\\Format.java=1733872361933

@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Proyecto Base,com.gsd.daw.prog,LectorDeBaseDeDatos,126,0,10,0,28,0,7,0,2,0
+Proyecto Base,com.gsd.daw.prog,Log,82,0,0,0,21,0,4,0,4,0
+Proyecto Base,com.gsd.daw.prog,ApacheLogLoader,145,0,11,0,41,0,8,0,2,0
+Proyecto Base,com.gsd.daw.prog,ApacheAnalizer,107,0,6,0,31,0,5,0,2,0
+Proyecto Base,com.gsd.daw.prog,LectorDeLineasDeLog,222,0,24,0,59,0,17,0,5,0
+Proyecto Base,com.gsd.daw.prog,BaseDeDatos,103,0,6,0,27,0,7,0,3,0
+Proyecto Base,com.gsd.daw.prog,Calculos,162,0,14,0,26,0,10,0,3,0
